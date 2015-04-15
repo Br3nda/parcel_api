@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'parcel_api/cli'
+
+ParcelApi::CLI.start(ARGV)
