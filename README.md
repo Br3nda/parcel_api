@@ -1,5 +1,7 @@
 # ParcelApi
 
+[![Build Status](https://magnum.travis-ci.com/etailer/parcel_api.svg?token=hCq9S5vXdep6iBazZLuu)](https://magnum.travis-ci.com/etailer/parcel_api) [![Code Climate](https://codeclimate.com/repos/552dc72e69568025e8001d73/badges/d0ccddbcdb28ce0d2834/gpa.svg)](https://codeclimate.com/repos/552dc72e69568025e8001d73/feed) [![Test Coverage](https://codeclimate.com/repos/552dc72e69568025e8001d73/badges/d0ccddbcdb28ce0d2834/coverage.svg)](https://codeclimate.com/repos/552dc72e69568025e8001d73/feed)
+
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/parcel_api`. To experiment with that code, run `bin/console` for an interactive prompt.
 
 TODO: Delete this and the text above, and describe your gem
