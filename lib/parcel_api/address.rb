@@ -22,7 +22,7 @@ module ParcelApi
       response = @connection.get AUTOCOMPLETE_URL, options
       dataResults = response.body['addresses']
       dataResults.each do |address|
-        data = OpenStruct.new(address_id: address['address_id'], full_address: address['full_address'])
+        data = OpenStruct.new(address)
         collectedAddresses << data
       end
       return collectedAddresses 
