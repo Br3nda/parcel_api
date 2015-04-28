@@ -5,7 +5,7 @@ module ParcelApi
   class Client
     def self.create(options={})
       if !options[:client_id] || !options[:client_secret] || !options[:username] || !options[:password]
-        raise ArgumentError, "Missing required client identifier."
+        raise ParcelApi::Error, "Missing required client identifier."
       end
       connection = Faraday.new(url: options[:address]) do |conn|
         conn.request :oauth2,
@@ -16,7 +16,7 @@ module ParcelApi
         grant_type: 'password'
         conn.request :json
         conn.response :json
-        conn.use Faraday::Response::RaiseError   # raise exceptions on 40x, 50x responses
+        conn.use ParcelApi::RaiseError      # raise exceptions on 40x, 50x responses
         conn.adapter Faraday.default_adapter
       end
     end
