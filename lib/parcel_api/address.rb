@@ -38,7 +38,6 @@ module ParcelApi
       complete_address_details = response.body['address']
       return OpenStruct.new(complete_address_details)
     end
-    end
 
   end
 end
