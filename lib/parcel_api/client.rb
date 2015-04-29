@@ -16,7 +16,7 @@ module ParcelApi
         grant_type: 'password'
         conn.request :json
         conn.response :json
-        conn.use ParcelApi::RaiseError      # raise exceptions on 40x, 50x responses
+        conn.use ParcelApi::ResponseError      # raise exceptions on 40x, 50x responses
         conn.adapter Faraday.default_adapter
       end
     end

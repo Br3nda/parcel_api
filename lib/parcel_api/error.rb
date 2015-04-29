@@ -13,10 +13,10 @@ module ParcelApi
   class ConnectionFailed < Error
   end
 
-  class ResponseError < Error
+  class ClientError < Error
   end
 
-  class RaiseError < Faraday::Response::Middleware
+  class ResponseError < Faraday::Response::Middleware
     ErrorStatuses = 400...600
 
     def on_complete(env)
@@ -26,12 +26,12 @@ module ParcelApi
       when 407
         raise ParcelApi::ConnectionFailed, %{407 "Proxy Authentication Required "}
       when ErrorStatuses
-        raise ParcelApi::ResponseError, response_values(env)
+        raise ParcelApi::ClientError, response_values(env)
       end
     end
 
     def response_values(env)
-      {:status => env.status, :body => env.body}
+      {status: env.status, body: env.body}
     end
 
   end
