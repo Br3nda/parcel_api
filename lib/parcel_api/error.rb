@@ -1,17 +1,28 @@
 require 'faraday'
 
 module ParcelApi
+
+  # When ParcelApi Service returns an error response, it raises an error. 
+  # These errors have the following ancestors:
+  # ParcelApi::Error
+  # ParcelApi::ResourceNotFound
+  # ParcelApi::ClientError
+
   class Error < StandardError
   end
 
   class NotFound < Error
   end
 
+  # Raised When ParcelApi returns the HTTP status code 404
+
   class ResourceNotFound < Error
   end
 
   class ConnectionFailed < Error
   end
+
+  # Raised When ParcelApi returns the HTTP status code 40x or 50x.
 
   class ClientError < Error
   end

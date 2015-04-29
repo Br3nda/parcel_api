@@ -24,7 +24,40 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Parcel API is a wrapper that contains methods which return valid matching Domestic or International Addresses. You need to configure auth credentials to make API calls. It's recommended that you provide these via your environment.
+
+### Configuration Options
+
+You can configure credentails via `ParcelApi::Address.new()`.
+
+```ruby
+client = ParcelApi::Address.new(client_id: ENV['CLIENT_ID'], client_secret: ENV['CLIENT_SECRET'], 
+  username: ENV['USER_NAME'], password: ENV['PASSWORD']
+)
+```
+
+Please take care to **never commit credentials to source control**. We strongly recommended loading credentials from an external source.
+
+### Domestic Address Search(NZ)
+
+Returns a list of suggested domestic addresses.
+
+```ruby
+# To retrieve a list of Domestic addresses for NZ.
+
+client.search('151 vic', 10)
+```
+
+### Get Address Detail(NZ)
+
+Returns the detailed information for a single domestic address identifier.
+
+```ruby
+# To retrieve complete address detail for single place(NZ) pass address_id to this method.
+
+client.address_detail('325595')
+```
+
 
 ## Development
 
