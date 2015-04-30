@@ -1,6 +1,5 @@
 require 'faraday'
 require 'faraday_middleware'
-require 'parcel_api/error'
 
 module ParcelApi
   class Client

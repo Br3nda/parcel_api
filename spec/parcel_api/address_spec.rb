@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'parcel_api/address'
+require 'parcel_api'
 
 describe ParcelApi::Address do
 
