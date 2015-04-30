@@ -19,6 +19,21 @@ describe ParcelApi::Address do
       expect(response).to be_empty
     end
 
+    it 'should returns a list of domestic addresses with default count' do
+      response = @client.search('151vic')
+      expect(response).to_not be_empty
+    end
+
+  end
+
+  context 'Search', vcr: { cassette_name: 'match_domestic_addresses_count' } do
+
+    it 'should retreive domestic addresses with 5 matches returned' do
+      response = @client.search('151vic',5)
+      expect(response.count).to eq 5
+      expect(response).to_not be_empty
+    end
+
   end
 
   context 'Address Detail', vcr: { cassette_name: 'domestic_address_detail' } do
