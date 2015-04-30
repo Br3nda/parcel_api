@@ -1,6 +1,7 @@
 require 'faraday'
 require 'faraday_middleware'
 require 'ostruct'
+require 'parcel_api/client'
 
 module ParcelApi
   class Address
