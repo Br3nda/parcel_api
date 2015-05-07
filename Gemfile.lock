@@ -22,11 +22,19 @@ GEM
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.9.1)
       faraday (>= 0.7.4, < 0.10)
+    gemfury (0.4.25)
+      faraday (>= 0.9.0, < 0.10.0.pre)
+      highline (~> 1.6.0)
+      multi_json (~> 1.0)
+      netrc (~> 0.7.7)
+      thor (>= 0.14.0, < 1.0.0.pre)
+    highline (1.6.21)
     jwt (1.4.1)
     method_source (0.8.2)
     multi_json (1.11.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    netrc (0.7.9)
     oauth2 (1.0.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
@@ -72,6 +80,7 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.8)
   codeclimate-test-reporter
+  gemfury
   parcel_api!
   pry (~> 0.10)
   rake (~> 10.0)
