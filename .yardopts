@@ -1,0 +1,7 @@
+--readme          README.md
+--markup          markdown
+--default-return  ""
+--hide-void-return
+--protected
+--no-private
+--no-highlight
