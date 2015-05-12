@@ -1,6 +1,47 @@
 ---
 http_interactions:
 - request:
+    method: post
+    uri: https://oauth.nzpost.co.nz/as/token.oauth2
+    body:
+      encoding: UTF-8
+      string: client_id=09f4307d0f384d8787d0809145f7e747&client_secret=bd75c90d6384472fA3109C8AAD8D974B&grant_type=password&password=2adVAyb4kQMMCpfPqEdyqacnrwLmyF&username=rjocoleman%40me.com
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 12 May 2015 12:57:37 GMT
+      Cache-Control:
+      - no-cache, no-store
+      Pragma:
+      - no-cache
+      Max-Age:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Set-Cookie:
+      - PF=nK98O9J2GbSiyhzWFRzwRF;Path=/;Secure;HttpOnly
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: "{\"access_token\":\"eyJhbGciOiJIUzI1NiIsImtpZCI6IlRFU1QifQ.eyJjbGllbnRpZCI6IjA5ZjQzMDdkMGYzODRkODc4N2QwODA5MTQ1ZjdlNzQ3IiwidXNlcm5hbWUiOiJyam9jb2xlbWFuQG1lLmNvbSIsImV4cCI6MTQzMTUyMTg1Nywic2NvcGUiOltdLCJjbGllbnRfaWQiOiIwOWY0MzA3ZDBmMzg0ZDg3ODdkMDgwOTE0NWY3ZTc0NyJ9.yN8xhOv0l51RFK313dMUiaK5zQtXZM5zGD98IaDE3pQ\",\"token_type\":\"Bearer\",\"expires_in\":86399}\r\n"
+    http_version: 
+  recorded_at: Tue, 12 May 2015 12:57:37 GMT
+- request:
     method: get
     uri: http://addressing-nzpg.au.cloudhub.io/v2/addresses/325595
     body:
@@ -8,7 +49,9 @@ http_interactions:
       string: ''
     headers:
       Authorization:
-      - Bearer eyJhbGciOiJIUzI1NiIsImtpZCI6IlRFU1QifQ.eyJjbGllbnRpZCI6IjA5ZjQzMDdkMGYzODRkODc4N2QwODA5MTQ1ZjdlNzQ3IiwidXNlcm5hbWUiOiJyam9jb2xlbWFuQG1lLmNvbSIsImV4cCI6MTQzMDQ1NjIwNCwic2NvcGUiOltdLCJjbGllbnRfaWQiOiIwOWY0MzA3ZDBmMzg0ZDg3ODdkMDgwOTE0NWY3ZTc0NyJ9.WtFWjfVcyjSMYL7UFtLcIwc_hI1on1jl9Mn7PhNZdRg
+      - Bearer eyJhbGciOiJIUzI1NiIsImtpZCI6IlRFU1QifQ.eyJjbGllbnRpZCI6IjA5ZjQzMDdkMGYzODRkODc4N2QwODA5MTQ1ZjdlNzQ3IiwidXNlcm5hbWUiOiJyam9jb2xlbWFuQG1lLmNvbSIsImV4cCI6MTQzMTUyMTg1Nywic2NvcGUiOltdLCJjbGllbnRfaWQiOiIwOWY0MzA3ZDBmMzg0ZDg3ODdkMDgwOTE0NWY3ZTc0NyJ9.yN8xhOv0l51RFK313dMUiaK5zQtXZM5zGD98IaDE3pQ
+      Client-Id:
+      - 09f4307d0f384d8787d0809145f7e747
       User-Agent:
       - Faraday v0.9.1
       Accept-Encoding:
@@ -23,13 +66,13 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 30 Apr 2015 10:08:05 GMT
+      - Tue, 12 May 2015 12:57:38 GMT
       Server:
       - nginx
       X-Mule-Encoding:
       - UTF-8
       X-Mule-Session:
-      - rO0ABXNyACNvcmcubXVsZS5zZXNzaW9uLkRlZmF1bHRNdWxlU2Vzc2lvbi7rdtEW7GGKAwAFWgAFdmFsaWRMAA1mbG93Q29uc3RydWN0dAAmTG9yZy9tdWxlL2FwaS9jb25zdHJ1Y3QvRmxvd0NvbnN0cnVjdDtMAAJpZHQAEkxqYXZhL2xhbmcvU3RyaW5nO0wACnByb3BlcnRpZXN0AA9MamF2YS91dGlsL01hcDtMAA9zZWN1cml0eUNvbnRleHR0ACdMb3JnL211bGUvYXBpL3NlY3VyaXR5L1NlY3VyaXR5Q29udGV4dDt4cAFwdAAkY2FjYTg3NjQtZWYyMC0xMWU0LWIwZWItMDIzZDBhZmJhNzU5c3IAJWphdmEudXRpbC5Db2xsZWN0aW9ucyRTeW5jaHJvbml6ZWRNYXAbc/kJS0s5ewMAAkwAAW1xAH4AA0wABW11dGV4dAASTGphdmEvbGFuZy9PYmplY3Q7eHBzcgAkb3JnLm11bGUudXRpbC5DYXNlSW5zZW5zaXRpdmVIYXNoTWFwndHZ72dFzgADAAB4cHcMP0AAAAAAABAAAAAAeHEAfgAJeHB4
+      - rO0ABXNyACNvcmcubXVsZS5zZXNzaW9uLkRlZmF1bHRNdWxlU2Vzc2lvbi7rdtEW7GGKAwAFWgAFdmFsaWRMAA1mbG93Q29uc3RydWN0dAAmTG9yZy9tdWxlL2FwaS9jb25zdHJ1Y3QvRmxvd0NvbnN0cnVjdDtMAAJpZHQAEkxqYXZhL2xhbmcvU3RyaW5nO0wACnByb3BlcnRpZXN0AA9MamF2YS91dGlsL01hcDtMAA9zZWN1cml0eUNvbnRleHR0ACdMb3JnL211bGUvYXBpL3NlY3VyaXR5L1NlY3VyaXR5Q29udGV4dDt4cAFwdAAkNzdiZTdlNzQtZjhhNi0xMWU0LTk0ODQtMDI4MjQ2MTJlNjZic3IAJWphdmEudXRpbC5Db2xsZWN0aW9ucyRTeW5jaHJvbml6ZWRNYXAbc/kJS0s5ewMAAkwAAW1xAH4AA0wABW11dGV4dAASTGphdmEvbGFuZy9PYmplY3Q7eHBzcgAkb3JnLm11bGUudXRpbC5DYXNlSW5zZW5zaXRpdmVIYXNoTWFwndHZ72dFzgADAAB4cHcMP0AAAAAAABAAAAAAeHEAfgAJeHB4
       Content-Length:
       - '379'
       Connection:
@@ -55,5 +98,5 @@ http_interactions:
           }
         }
     http_version: 
-  recorded_at: Thu, 30 Apr 2015 10:08:05 GMT
+  recorded_at: Tue, 12 May 2015 12:57:38 GMT
 recorded_with: VCR 2.9.3

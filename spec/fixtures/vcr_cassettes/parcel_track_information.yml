@@ -1,0 +1,103 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://oauth.nzpost.co.nz/as/token.oauth2
+    body:
+      encoding: UTF-8
+      string: client_id=09f4307d0f384d8787d0809145f7e747&client_secret=bd75c90d6384472fA3109C8AAD8D974B&grant_type=password&password=2adVAyb4kQMMCpfPqEdyqacnrwLmyF&username=rjocoleman%40me.com
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 12 May 2015 12:54:39 GMT
+      Cache-Control:
+      - no-cache, no-store
+      Pragma:
+      - no-cache
+      Max-Age:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Set-Cookie:
+      - PF=5HbQ9eaBFCZxOkmZRwNcQz;Path=/;Secure;HttpOnly
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: "{\"access_token\":\"eyJhbGciOiJIUzI1NiIsImtpZCI6IlRFU1QifQ.eyJjbGllbnRpZCI6IjA5ZjQzMDdkMGYzODRkODc4N2QwODA5MTQ1ZjdlNzQ3IiwidXNlcm5hbWUiOiJyam9jb2xlbWFuQG1lLmNvbSIsImV4cCI6MTQzMTUyMTY3OSwic2NvcGUiOltdLCJjbGllbnRfaWQiOiIwOWY0MzA3ZDBmMzg0ZDg3ODdkMDgwOTE0NWY3ZTc0NyJ9.kArbOgqwAkNm3QR_iiZYQwq945CyAcfFbMdujxBOe1Q\",\"token_type\":\"Bearer\",\"expires_in\":86399}\r\n"
+    http_version: 
+  recorded_at: Tue, 12 May 2015 12:54:39 GMT
+- request:
+    method: get
+    uri: http://tracking-nzpg.au.cloudhub.io/v1/parcels/2420059066827301HLZ001MN
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer eyJhbGciOiJIUzI1NiIsImtpZCI6IlRFU1QifQ.eyJjbGllbnRpZCI6IjA5ZjQzMDdkMGYzODRkODc4N2QwODA5MTQ1ZjdlNzQ3IiwidXNlcm5hbWUiOiJyam9jb2xlbWFuQG1lLmNvbSIsImV4cCI6MTQzMTUyMTY3OSwic2NvcGUiOltdLCJjbGllbnRfaWQiOiIwOWY0MzA3ZDBmMzg0ZDg3ODdkMDgwOTE0NWY3ZTc0NyJ9.kArbOgqwAkNm3QR_iiZYQwq945CyAcfFbMdujxBOe1Q
+      Client-Id:
+      - 09f4307d0f384d8787d0809145f7e747
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 12 May 2015 12:54:47 GMT
+      Server:
+      - nginx
+      X-Mule-Encoding:
+      - utf-8
+      X-Mule-Endpoint:
+      - https://api.courierpost.co.nz:443/tracking/v1/parcels/2420059066827301HLZ001MN
+      X-Mule-Root-Message-Id:
+      - 10a9caa0-f8a6-11e4-901e-022d6bf5beb9
+      X-Mule-Session:
+      - rO0ABXNyACNvcmcubXVsZS5zZXNzaW9uLkRlZmF1bHRNdWxlU2Vzc2lvbi7rdtEW7GGKAwAFWgAFdmFsaWRMAA1mbG93Q29uc3RydWN0dAAmTG9yZy9tdWxlL2FwaS9jb25zdHJ1Y3QvRmxvd0NvbnN0cnVjdDtMAAJpZHQAEkxqYXZhL2xhbmcvU3RyaW5nO0wACnByb3BlcnRpZXN0AA9MamF2YS91dGlsL01hcDtMAA9zZWN1cml0eUNvbnRleHR0ACdMb3JnL211bGUvYXBpL3NlY3VyaXR5L1NlY3VyaXR5Q29udGV4dDt4cAFwdAAkMTBhOWNhYTQtZjhhNi0xMWU0LTkwMWUtMDIyZDZiZjViZWI5c3IAJWphdmEudXRpbC5Db2xsZWN0aW9ucyRTeW5jaHJvbml6ZWRNYXAbc/kJS0s5ewMAAkwAAW1xAH4AA0wABW11dGV4dAASTGphdmEvbGFuZy9PYmplY3Q7eHBzcgAkb3JnLm11bGUudXRpbC5DYXNlSW5zZW5zaXRpdmVIYXNoTWFwndHZ72dFzgADAAB4cHcMP0AAAAAAABAAAAAAeHEAfgAJeHB4
+      X-Pingfederate-Clientid:
+      - 09f4307d0f384d8787d0809145f7e747
+      X-Pingfederate-Username:
+      - rjocoleman@me.com
+      Content-Length:
+      - '1138'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{\"success\":true,\"tracking_reference\":\"2420059066827301HLZ001MN\",\"service\":\"UNKNOWN\",\"carrier\":\"Courier
+        Post\",\"tracking_events\":[{\"status_code\":\"22\",\"status_description\":\"Delivered\",\"event_description\":\"Your
+        item was delivered by our courier based at Te Awamutu. Thank you for using
+        CourierPost\",\"event_datetime\":\"2015-05-06T11:48:55\",\"depot\":\"Te Awamutu\"},{\"status_code\":\"58\",\"event_description\":\"We
+        were waiting on your courier coming back to our depot so that they could take
+        your item out for delivery.\",\"event_datetime\":\"2015-05-06T06:49:07\"},{\"status_code\":\"13\",\"event_description\":\"Your
+        item was picked up by our courier based at Airport Oaks.\",\"event_datetime\":\"2015-05-05T09:25:50\"},{\"status_code\":\"8\",\"event_description\":\"Your
+        item was processed at the CourierPost Auckland Operations Centre.\",\"event_datetime\":\"2015-05-05T17:15:11\"},{\"status_code\":\"32\",\"event_description\":\"Your
+        item was processed for delivery.\",\"event_datetime\":\"2015-05-06T10:44:35\"},{\"status_code\":\"22\",\"event_description\":\"Your
+        item was delivered by our courier based at Te Awamutu. Thank you for using
+        CourierPost\",\"event_datetime\":\"2015-05-06T11:48:55\"}]}"
+    http_version: 
+  recorded_at: Tue, 12 May 2015 12:54:47 GMT
+recorded_with: VCR 2.9.3
