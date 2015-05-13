@@ -29,9 +29,8 @@ module ParcelApi
       details_url = File.join(PARCELTRACK_URL, tracking_reference.to_s)
       response = @connection.get details_url
       events = response.body['tracking_events'].to_json
-      tracking_events = JSON.parse(events, object_class: OpenStruct)
-      return OpenStruct.new(tracking_reference: response.body['tracking_reference'], carrier: response.body['carrier'],
-        service: response.body['service'], tracking_events: tracking_events)
+      tracking_events = JSON.parse(events, object_class: OpenStruct).sort_by{|k| k.event_datetime}.reverse
+      return OpenStruct.new(tracking_events: tracking_events)
     end
 
   end

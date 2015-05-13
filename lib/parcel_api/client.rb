@@ -20,6 +20,8 @@ module ParcelApi
       end
     end
 
+    private
+
     def self.get_token(options={})
       connection = Faraday.new({ ssl: { verify: false } }) do |conn|
         conn.request :url_encoded
