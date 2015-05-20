@@ -29,7 +29,8 @@ module ParcelApi
         conn.use ParcelApi::ResponseError
         conn.adapter Faraday.default_adapter
       end
-      params = {'client_id' => options[:client_id],'client_secret' => options[:client_secret],'username' => options[:username],'password' => options[:password],'grant_type' => 'password'}
+      params = {'client_id' => options[:client_id],'client_secret' => options[:client_secret],
+                'username' => options[:username],'password' => options[:password],'grant_type' => 'password'}
       response = connection.post 'https://oauth.nzpost.co.nz/as/token.oauth2', params
       return response.body['access_token']
     end
