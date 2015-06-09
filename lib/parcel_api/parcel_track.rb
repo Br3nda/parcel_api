@@ -9,13 +9,13 @@ module ParcelApi
 
   class ParcelTrack
 
-    PARCELTRACK_URL = '/v1/parcels'
+    PARCELTRACK_URL = '/ParcelTrack/2.0/parcels'
 
     # Creates a new ParcelApi::ParcelTrack instance.
     # @param [Hash] params pass auth credentials(client_id, client_secret, username, password)
 
     def initialize(params={})
-      address = params.fetch(:address, 'http://tracking-nzpg.au.cloudhub.io')
+      address = params.fetch(:address, 'https://api.nzpost.co.nz')
       @connection = ParcelApi::Client.create(client_id: params[:client_id],
                     client_secret: params[:client_secret], username: params[:username],
                     password: params[:password], address: address)
