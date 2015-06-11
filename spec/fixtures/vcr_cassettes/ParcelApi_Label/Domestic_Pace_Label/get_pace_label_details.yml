@@ -1,0 +1,158 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://oauth.nzpost.co.nz/as/token.oauth2
+    body:
+      encoding: UTF-8
+      string: client_id=123&client_secret=456&grant_type=password&password=password&username=test%40example.com
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 11 Jun 2015 10:10:11 GMT
+      Cache-Control:
+      - no-cache, no-store
+      Pragma:
+      - no-cache
+      Max-Age:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Set-Cookie:
+      - PF=K28OUzaEutkoC9SWSVkty3;Path=/;Secure;HttpOnly
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: "{\"access_token\":\"eyJhbGciOiJIUzI1NiIsImtpZCI6IlRFU1QifQ.eyJjbGllbnRpZCI6ImJlODEzNDE5NzE4NjQ5YWI5MmQyOGNiNmY5NmYzMDhlIiwidXNlcm5hbWUiOiJyb2JlcnRAZXRhaWxlci5jby5ueiIsImV4cCI6MTQzNDEwMzgxMSwic2NvcGUiOltdLCJjbGllbnRfaWQiOiJiZTgxMzQxOTcxODY0OWFiOTJkMjhjYjZmOTZmMzA4ZSJ9.RLFE_Sm0xbkWw3ArlJD9HX_XCItvQI_LYN4yViDqmVI\",\"token_type\":\"Bearer\",\"expires_in\":86399}\r\n"
+    http_version: 
+  recorded_at: Thu, 11 Jun 2015 10:10:11 GMT
+- request:
+    method: post
+    uri: https://api.nzpost.co.nz/ParcelLabel/2.0/labels/domestic
+    body:
+      encoding: UTF-8
+      string: '{"requests":[{"carrier":"PACE","job_number":"987654","sender_details":{"name":"Glenn
+        Dodd","phone":"0274123456","email":"glenn@example.co.nz","customer_reference":"ON:123456"},"pickup_address":{"company":"Glenns
+        Acme Company","unit_type":"Flat","unit_value":"2","floor":"Floor 2","street":"25
+        Buller Crescent","suburb":"Manurewa","city":"Auckland","postcode":"2102"},"receiver_details":{"name":"Glenn
+        Dodd","phone":"0274123456"},"delivery_address":{"company":"Acme Company","city":"Auckland","floor":"Floor
+        2","postcode":"2102","street":"151 Victoria Street","suburb":"Manurewa","unit_type":"Flat","unit_value":"2"},"return_indicator":"NORMAL","delivery_instructions":"Ring
+        the bell","service_code":"HDA","add_ons":[],"dimensions":{"weight":"10","height":"35","width":"45","length":"15"}}]}'
+    headers:
+      Authorization:
+      - Bearer eyJhbGciOiJIUzI1NiIsImtpZCI6IlRFU1QifQ.eyJjbGllbnRpZCI6ImJlODEzNDE5NzE4NjQ5YWI5MmQyOGNiNmY5NmYzMDhlIiwidXNlcm5hbWUiOiJyb2JlcnRAZXRhaWxlci5jby5ueiIsImV4cCI6MTQzNDEwMzgxMSwic2NvcGUiOltdLCJjbGllbnRfaWQiOiJiZTgxMzQxOTcxODY0OWFiOTJkMjhjYjZmOTZmMzA4ZSJ9.RLFE_Sm0xbkWw3ArlJD9HX_XCItvQI_LYN4yViDqmVI
+      Client-Id:
+      - 123
+      User-Agent:
+      - Faraday v0.9.1
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 11 Jun 2015 10:10:12 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '351'
+      Connection:
+      - keep-alive
+      X-Mule-Encoding:
+      - utf-8
+      X-Mule-Session:
+      - rO0ABXNyACNvcmcubXVsZS5zZXNzaW9uLkRlZmF1bHRNdWxlU2Vzc2lvbi7rdtEW7GGKAwAFWgAFdmFsaWRMAA1mbG93Q29uc3RydWN0dAAmTG9yZy9tdWxlL2FwaS9jb25zdHJ1Y3QvRmxvd0NvbnN0cnVjdDtMAAJpZHQAEkxqYXZhL2xhbmcvU3RyaW5nO0wACnByb3BlcnRpZXN0AA9MamF2YS91dGlsL01hcDtMAA9zZWN1cml0eUNvbnRleHR0ACdMb3JnL211bGUvYXBpL3NlY3VyaXR5L1NlY3VyaXR5Q29udGV4dDt4cAFwdAAkMGJkY2E0NTQtMTAyMi0xMWU1LWI3NTMtMDZiYTdjMWJjN2I3c3IAJWphdmEudXRpbC5Db2xsZWN0aW9ucyRTeW5jaHJvbml6ZWRNYXAbc/kJS0s5ewMAAkwAAW1xAH4AA0wABW11dGV4dAASTGphdmEvbGFuZy9PYmplY3Q7eHBzcgAkb3JnLm11bGUudXRpbC5DYXNlSW5zZW5zaXRpdmVIYXNoTWFwndHZ72dFzgADAAB4cHcMP0AAAAAAABAAAAAAeHEAfgAJeHB4
+      X-Ratelimit-Limit:
+      - '15000'
+      X-Ratelimit-Remaining:
+      - '14999'
+      X-Ratelimit-Reset:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: '{"success": true, "labels": [{"label_id":"6127573d-0dba-452d-926e-be0acf65a752",
+        "label_details":"https://api.nzpost.co.nz/ParcelLabel/2.0/labels/6127573d-0dba-452d-926e-be0acf65a752.json",
+        "label_print":"https://api.nzpost.co.nz/ParcelLabel/2.0/labels/6127573d-0dba-452d-926e-be0acf65a752.pdf"}],
+        "message_id": "0bdca450-1022-11e5-b753-06ba7c1bc7b7"}'
+    http_version: 
+  recorded_at: Thu, 11 Jun 2015 10:10:12 GMT
+- request:
+    method: get
+    uri: https://api.nzpost.co.nz/ParcelLabel/2.0/labels/6127573d-0dba-452d-926e-be0acf65a752.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer eyJhbGciOiJIUzI1NiIsImtpZCI6IlRFU1QifQ.eyJjbGllbnRpZCI6ImJlODEzNDE5NzE4NjQ5YWI5MmQyOGNiNmY5NmYzMDhlIiwidXNlcm5hbWUiOiJyb2JlcnRAZXRhaWxlci5jby5ueiIsImV4cCI6MTQzNDEwMzgxMSwic2NvcGUiOltdLCJjbGllbnRfaWQiOiJiZTgxMzQxOTcxODY0OWFiOTJkMjhjYjZmOTZmMzA4ZSJ9.RLFE_Sm0xbkWw3ArlJD9HX_XCItvQI_LYN4yViDqmVI
+      Client-Id:
+      - 123
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 11 Jun 2015 10:10:13 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '389'
+      Connection:
+      - keep-alive
+      X-Mule-Encoding:
+      - UTF-8
+      X-Mule-Session:
+      - rO0ABXNyACNvcmcubXVsZS5zZXNzaW9uLkRlZmF1bHRNdWxlU2Vzc2lvbi7rdtEW7GGKAwAFWgAFdmFsaWRMAA1mbG93Q29uc3RydWN0dAAmTG9yZy9tdWxlL2FwaS9jb25zdHJ1Y3QvRmxvd0NvbnN0cnVjdDtMAAJpZHQAEkxqYXZhL2xhbmcvU3RyaW5nO0wACnByb3BlcnRpZXN0AA9MamF2YS91dGlsL01hcDtMAA9zZWN1cml0eUNvbnRleHR0ACdMb3JnL211bGUvYXBpL3NlY3VyaXR5L1NlY3VyaXR5Q29udGV4dDt4cAFwdAAkMGM3MmYwZTQtMTAyMi0xMWU1LWI3NTMtMDZiYTdjMWJjN2I3c3IAJWphdmEudXRpbC5Db2xsZWN0aW9ucyRTeW5jaHJvbml6ZWRNYXAbc/kJS0s5ewMAAkwAAW1xAH4AA0wABW11dGV4dAASTGphdmEvbGFuZy9PYmplY3Q7eHBzcgAkb3JnLm11bGUudXRpbC5DYXNlSW5zZW5zaXRpdmVIYXNoTWFwndHZ72dFzgADAAB4cHcMP0AAAAAAABAAAAAAeHEAfgAJeHB4
+      X-Ratelimit-Limit:
+      - '15000'
+      X-Ratelimit-Remaining:
+      - '14999'
+      X-Ratelimit-Reset:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "success" : true,
+          "label_id" : "6127573d-0dba-452d-926e-be0acf65a752",
+          "status" : "Complete",
+          "tracking_reference" : [ null ],
+          "expiry_date" : "10 Aug 2015",
+          "details_url" : "https://api.nzpost.co.nz/ParcelLabel/2.0/labels/6127573d-0dba-452d-926e-be0acf65a752.json",
+          "label_url" : "https://api.nzpost.co.nz/ParcelLabel/2.0/labels/6127573d-0dba-452d-926e-be0acf65a752.pdf"
+        }
+    http_version: 
+  recorded_at: Thu, 11 Jun 2015 10:10:13 GMT
+recorded_with: VCR 2.9.3
