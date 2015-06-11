@@ -11,5 +11,4 @@ require 'parcel_api/shipping_options'
 require 'parcel_api/pickup'
 require 'parcel_api/client'
 
-module ParcelApi
-end
+module ParcelApi; end
