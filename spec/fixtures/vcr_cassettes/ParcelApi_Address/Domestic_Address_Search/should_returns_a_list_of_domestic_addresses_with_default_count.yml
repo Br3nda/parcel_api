@@ -1,0 +1,101 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://oauth.nzpost.co.nz/as/token.oauth2
+    body:
+      encoding: UTF-8
+      string: client_id=123&client_secret=456&grant_type=password&password=password&username=test%40example.com
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 11 Jun 2015 08:12:21 GMT
+      Cache-Control:
+      - no-cache, no-store
+      Pragma:
+      - no-cache
+      Max-Age:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Set-Cookie:
+      - PF=Wc1LgK4PctZLZHPnn045rA;Path=/;Secure;HttpOnly
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: "{\"access_token\":\"eyJhbGciOiJIUzI1NiIsImtpZCI6IlRFU1QifQ.eyJjbGllbnRpZCI6ImJlODEzNDE5NzE4NjQ5YWI5MmQyOGNiNmY5NmYzMDhlIiwidXNlcm5hbWUiOiJyb2JlcnRAZXRhaWxlci5jby5ueiIsImV4cCI6MTQzNDA5Njc0MSwic2NvcGUiOltdLCJjbGllbnRfaWQiOiJiZTgxMzQxOTcxODY0OWFiOTJkMjhjYjZmOTZmMzA4ZSJ9._qq2Ku8gNahzKUu62goFPoZY7Co_qWubu5VYNZt884Y\",\"token_type\":\"Bearer\",\"expires_in\":86399}\r\n"
+    http_version: 
+  recorded_at: Thu, 11 Jun 2015 08:12:21 GMT
+- request:
+    method: get
+    uri: https://api.nzpost.co.nz/ParcelAddress/2.0/domestic/addresses?count=10&q=151%20vic
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer eyJhbGciOiJIUzI1NiIsImtpZCI6IlRFU1QifQ.eyJjbGllbnRpZCI6ImJlODEzNDE5NzE4NjQ5YWI5MmQyOGNiNmY5NmYzMDhlIiwidXNlcm5hbWUiOiJyb2JlcnRAZXRhaWxlci5jby5ueiIsImV4cCI6MTQzNDA5Njc0MSwic2NvcGUiOltdLCJjbGllbnRfaWQiOiJiZTgxMzQxOTcxODY0OWFiOTJkMjhjYjZmOTZmMzA4ZSJ9._qq2Ku8gNahzKUu62goFPoZY7Co_qWubu5VYNZt884Y
+      Client-Id:
+      - 123
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 11 Jun 2015 08:12:21 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1078'
+      Connection:
+      - keep-alive
+      X-Mule-Encoding:
+      - utf-8
+      X-Mule-Session:
+      - rO0ABXNyACNvcmcubXVsZS5zZXNzaW9uLkRlZmF1bHRNdWxlU2Vzc2lvbi7rdtEW7GGKAwAFWgAFdmFsaWRMAA1mbG93Q29uc3RydWN0dAAmTG9yZy9tdWxlL2FwaS9jb25zdHJ1Y3QvRmxvd0NvbnN0cnVjdDtMAAJpZHQAEkxqYXZhL2xhbmcvU3RyaW5nO0wACnByb3BlcnRpZXN0AA9MamF2YS91dGlsL01hcDtMAA9zZWN1cml0eUNvbnRleHR0ACdMb3JnL211bGUvYXBpL3NlY3VyaXR5L1NlY3VyaXR5Q29udGV4dDt4cAFwdAAkOTVkMTJiYjEtMTAxMS0xMWU1LWFiMjMtMDI1OTM1MjE2YzAzc3IAJWphdmEudXRpbC5Db2xsZWN0aW9ucyRTeW5jaHJvbml6ZWRNYXAbc/kJS0s5ewMAAkwAAW1xAH4AA0wABW11dGV4dAASTGphdmEvbGFuZy9PYmplY3Q7eHBzcgAkb3JnLm11bGUudXRpbC5DYXNlSW5zZW5zaXRpdmVIYXNoTWFwndHZ72dFzgADAAB4cHcMP0AAAAAAABAAAAAAeHEAfgAJeHB4
+      X-Ratelimit-Limit:
+      - '15000'
+      X-Ratelimit-Remaining:
+      - '14999'
+      X-Ratelimit-Reset:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: '{"success":true,"addresses":[{"full_address":"151 Victoria Avenue,
+        Remuera, Auckland 1050","address_id":"325595","dpid":"1344299"},{"full_address":"151
+        Victoria Avenue, Wanganui, Wanganui 4500","address_id":"227382","dpid":"859524"},{"full_address":"151
+        Victoria Road, Devonport, Auckland 0624","address_id":"1827562","dpid":"156810"},{"full_address":"151
+        Victoria Road, RD 1, Cambridge 3493","address_id":"561991","dpid":"2711123"},{"full_address":"151
+        Victoria Road, Saint Clair, Dunedin 9012","address_id":"949793","dpid":"40166"},{"full_address":"151
+        Victoria Street West, Auckland Central, Auckland 1010","address_id":"1945196","dpid":"2986570"},{"full_address":"151
+        Victoria Street West, Pukekohe, Pukekohe 2120","address_id":"440146","dpid":"1599115"},{"full_address":"151
+        Victoria Street, Ashburton, Ashburton 7700","address_id":"351565","dpid":"1260081"},{"full_address":"151
+        Victoria Street, Cambridge, Cambridge 3434","address_id":"1939057","dpid":"1201157"},{"full_address":"151
+        Victoria Street, Dargaville, Dargaville 0310","address_id":"1123252","dpid":"662516"}]}'
+    http_version: 
+  recorded_at: Thu, 11 Jun 2015 08:12:22 GMT
+recorded_with: VCR 2.9.3

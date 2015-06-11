@@ -1,56 +1,67 @@
-require 'faraday'
-require 'faraday_middleware'
-require 'ostruct'
-
 module ParcelApi
 
-  #This module provides API requests to Search Domestic(NZ) Address and Get Specific Address Detail.
+  # This module provides API requests to Search Domestic(NZ) Addresses, Get Specific Domestic Address Detail,
+  # Search International Addresses and Get Specifc International Address Detail.
 
   class Address
 
-    AUTOCOMPLETE_URL  = '/v2/addresses'
+    attr_accessor :connection
+
+    DOMESTIC_URL = '/ParcelAddress/2.0/domestic/addresses'
+    INTERNATIONAL_URL = '/ParcelAddress/2.0/international/addresses'
 
     # Creates a new ParcelApi::Address instance.
-    # @param [Hash] params pass auth credentials(client_id, client_secret, username, password)
-    def initialize(params={})
-      address = params.fetch(:address, 'http://addressing-nzpg.au.cloudhub.io')
-      @connection = ParcelApi::Client.create(client_id: params[:client_id],
-                    client_secret: params[:client_secret], username: params[:username],
-                    password: params[:password], address: address)
+
+    def initialize
+      @connection = connection || ParcelApi::Client.connection
     end
 
-    # Search for NZ domestic Address with a query.
+    # Search for Domestic (NZ) Address
     # @param [String] query the query to search for
-    # @param [Integer] count the number of search results 
+    # @param [Integer] count the number of search results
     # @return [Array] return array of addresses
 
-    def search(query,count=10)
-      collectedAddresses = []
-      count = 10 if count > 10
-      unless(query.length < 4)
-        options = {
-          q: query,
-          count: count
-        }
-        response = @connection.get AUTOCOMPLETE_URL, options
-        dataResults = response.body['addresses']
-        dataResults.each do |address|
-          data = OpenStruct.new(address)
-          collectedAddresses << data
-        end
+    def search(query, count=10)
+      return [] if query.length < 4
+
+      response = @connection.get DOMESTIC_URL, { q: query, count: count }
+      addresses = response.body['addresses'].each do |a|
+        a['address_id'] = Integer(a['address_id'])
+        a['dpid'] = Integer(a['dpid'])
       end
-      return collectedAddresses 
+      addresses.map {|address| OpenStruct.new(address)}
     end
 
-    # Return complete address detail for specific address.
+    # Return address details for an address id
     # @param address_id [Srting]
     # @return Object Of complete address detail
 
-    def address_detail(address_id)
-      details_url = File.join(AUTOCOMPLETE_URL, address_id.to_s)
+    def details(address_id)
+      details_url = File.join(DOMESTIC_URL, address_id.to_s)
       response = @connection.get details_url
-      complete_address_details = response.body['address']
-      return OpenStruct.new(complete_address_details)
+      OpenStruct.new(response.body['address'])
+    end
+
+    # Search for an International Address
+    # @param [String] query the query to search for
+    # @param [Integer] count the number of search results
+    # @return [Array] return array of international addresses
+
+    def international_search(query, count=5, country_code=nil)
+      return [] if query.length < 4
+
+      response = @connection.get INTERNATIONAL_URL, { q: query, count: count, country_code: country_code }
+      response.body['addresses'].map {|address| OpenStruct.new(address)}
+    end
+
+    # Return international address details for a specific international address id
+    # @param address_id [String]
+    # @return Object of international address detail
+
+    def international_details(address_id)
+      details_url = File.join(INTERNATIONAL_URL, address_id.to_s)
+      response = @connection.get details_url
+      RecursiveOpenStruct.new(response.body['result'], recurse_over_arrays: true)
     end
 
   end
