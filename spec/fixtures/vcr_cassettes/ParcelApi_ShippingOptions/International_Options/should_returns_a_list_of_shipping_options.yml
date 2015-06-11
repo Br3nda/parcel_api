@@ -1,0 +1,122 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://oauth.nzpost.co.nz/as/token.oauth2
+    body:
+      encoding: UTF-8
+      string: client_id=123&client_secret=456&grant_type=password&password=password&username=test%40example.com
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 11 Jun 2015 10:45:56 GMT
+      Cache-Control:
+      - no-cache, no-store
+      Pragma:
+      - no-cache
+      Max-Age:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Set-Cookie:
+      - PF=nt42nwzxkEu61frcpgdFTQ;Path=/;Secure;HttpOnly
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: "{\"access_token\":\"eyJhbGciOiJIUzI1NiIsImtpZCI6IlRFU1QifQ.eyJjbGllbnRpZCI6ImJlODEzNDE5NzE4NjQ5YWI5MmQyOGNiNmY5NmYzMDhlIiwidXNlcm5hbWUiOiJyb2JlcnRAZXRhaWxlci5jby5ueiIsImV4cCI6MTQzNDEwNTk1Niwic2NvcGUiOltdLCJjbGllbnRfaWQiOiJiZTgxMzQxOTcxODY0OWFiOTJkMjhjYjZmOTZmMzA4ZSJ9.zwSmDbTDFtbRiO4iNxvtiHEW4JCbW74_91m424NeTcg\",\"token_type\":\"Bearer\",\"expires_in\":86399}\r\n"
+    http_version: 
+  recorded_at: Thu, 11 Jun 2015 10:45:56 GMT
+- request:
+    method: get
+    uri: https://api.nzpost.co.nz/ShippingOptions/2.0/international?country_code=AU&height=10&length=10&value=100&weight=13&width=10
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer eyJhbGciOiJIUzI1NiIsImtpZCI6IlRFU1QifQ.eyJjbGllbnRpZCI6ImJlODEzNDE5NzE4NjQ5YWI5MmQyOGNiNmY5NmYzMDhlIiwidXNlcm5hbWUiOiJyb2JlcnRAZXRhaWxlci5jby5ueiIsImV4cCI6MTQzNDEwNTk1Niwic2NvcGUiOltdLCJjbGllbnRfaWQiOiJiZTgxMzQxOTcxODY0OWFiOTJkMjhjYjZmOTZmMzA4ZSJ9.zwSmDbTDFtbRiO4iNxvtiHEW4JCbW74_91m424NeTcg
+      Client-Id:
+      - 123
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 11 Jun 2015 10:45:57 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '907'
+      Connection:
+      - keep-alive
+      X-Mule-Encoding:
+      - UTF-8
+      X-Mule-Session:
+      - rO0ABXNyACNvcmcubXVsZS5zZXNzaW9uLkRlZmF1bHRNdWxlU2Vzc2lvbi7rdtEW7GGKAwAFWgAFdmFsaWRMAA1mbG93Q29uc3RydWN0dAAmTG9yZy9tdWxlL2FwaS9jb25zdHJ1Y3QvRmxvd0NvbnN0cnVjdDtMAAJpZHQAEkxqYXZhL2xhbmcvU3RyaW5nO0wACnByb3BlcnRpZXN0AA9MamF2YS91dGlsL01hcDtMAA9zZWN1cml0eUNvbnRleHR0ACdMb3JnL211bGUvYXBpL3NlY3VyaXR5L1NlY3VyaXR5Q29udGV4dDt4cAFwdAAkMGE1YjkwNTQtMTAyNy0xMWU1LThmMTctMDJhMGY2M2I5YWI5c3IAJWphdmEudXRpbC5Db2xsZWN0aW9ucyRTeW5jaHJvbml6ZWRNYXAbc/kJS0s5ewMAAkwAAW1xAH4AA0wABW11dGV4dAASTGphdmEvbGFuZy9PYmplY3Q7eHBzcgAkb3JnLm11bGUudXRpbC5DYXNlSW5zZW5zaXRpdmVIYXNoTWFwndHZ72dFzgADAAB4cHcMP0AAAAAAABAAAAAAeHEAfgAJeHB4
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4999'
+      X-Ratelimit-Reset:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "success" : true,
+          "services" : [ {
+            "service_code" : "TIEX",
+            "description" : "Int Express Pcl Zone A 13.0kg",
+            "price_excluding_gst" : 191.86,
+            "price_including_gst" : 220.64,
+            "min_delivery_target" : 1,
+            "max_delivery_target" : 5,
+            "tracking_included" : true,
+            "signature_included" : true
+          }, {
+            "service_code" : "TIEC",
+            "description" : "Int Econ Cour Pcl Zn A 13.0kg",
+            "price_excluding_gst" : 120.66,
+            "price_including_gst" : 138.76,
+            "min_delivery_target" : 2,
+            "max_delivery_target" : 6,
+            "tracking_included" : true,
+            "signature_included" : true
+          }, {
+            "service_code" : "TIALP",
+            "description" : "Zone A AirPost Cust Pcl 13.0kg",
+            "price_excluding_gst" : 105.18,
+            "price_including_gst" : 120.96,
+            "min_delivery_target" : 3,
+            "max_delivery_target" : 10,
+            "tracking_included" : false,
+            "signature_included" : false
+          } ]
+        }
+    http_version: 
+  recorded_at: Thu, 11 Jun 2015 10:45:57 GMT
+recorded_with: VCR 2.9.3

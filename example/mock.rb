@@ -216,3 +216,30 @@ intl_ticket = intl_labeller.download(intl.label_id)
 File.open("#{intl.label_id}.pdf", 'w') do |f|
   f.puts(intl_ticket.read)
 end
+
+
+# ShippingOptions Example
+
+shipping_options = ParcelApi::ShippingOptions.new
+
+params = {
+  weight: 10,
+  length: 10,
+  width: 10,
+  height: 10,
+  pickup_address_id: 990003,
+  delivery_dpid: 2727895,
+}
+
+domestic_options = shipping_options.get_domestic(params)
+
+intl_params = {
+  value: 100,
+  length: 10,
+  height: 10,
+  width: 10,
+  weight: 13,
+  country_code: 'AU',
+}
+
+intl_options = shipping_options.get_international(intl_params)
