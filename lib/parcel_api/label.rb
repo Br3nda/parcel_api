@@ -26,6 +26,17 @@ module ParcelApi
       labels.first if labels.count == 1
     end
 
+    # Create an international label with the specified options
+    # @param label_options [Hash]
+    # @return Single or array of label objects
+
+    def international_create(label_options)
+      international_url = File.join(LABEL_URL, 'international')
+      response = @connection.post international_url, label_options
+      labels = response.body['labels'].map {|label| OpenStruct.new(label)}
+      labels.first if labels.count == 1
+    end
+
     # Get label details
     # @param label_id [String]
     # @return Object of label details

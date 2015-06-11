@@ -123,3 +123,96 @@ cp_ticket = labeller.download(cp.label_id)
 File.open("#{cp.label_id}.pdf", 'w') do |f|
   f.puts(cp_ticket.read)
 end
+
+# International Labelling Example
+
+intl_labeller = ParcelApi::Label.new
+
+# Label options
+intl_label_options = {
+  "requests" => [
+    {
+      "sender_details" => {
+        "name" => "The sender",
+        "phone" => "091428774",
+        "email" => "the_sender@mail.com",
+        "reference" => "Glqddd 008",
+        "signatory" => "Mary Jones",
+        "customs_code" => "HGD34373",
+      },
+      "pickup_address" => {
+        "building" => "",
+        "company" => "Express Courier Limited",
+        "street" => "151 Victoria Street West",
+        "suburb" => "Auckland Central",
+        "city" => "Auckland",
+        "country_code" => "NZ",
+        "postcode" => "1070",
+      },
+      "receiver_details" =>{
+        "name" => "Tom Smith",
+        "phone" => "051236547",
+        "vat_number" => "GB123123123123",
+      },
+      "delivery_address" => {
+        "building" => "",
+        "company" => "American Express",
+        "street" => "23 Broadway Street",
+        "suburb" => "Queens",
+        "city" => "New York",
+        "postcode" => "4414",
+        "country_code" => "US",
+        "state" => "New York",
+      },
+      "delivery_instructions" => "Leave at door",
+      "dimensions" =>{
+        "length" =>600,
+        "width" =>100,
+        "height" =>200,
+      },
+      "undeliverable_instructions" => "RETURN",
+      "contents" => [
+        {
+          "unit_description" => "Light bulbs",
+          "unit_count" =>2,
+          "unit_value" =>5.1,
+          "unit_weight" =>0.5,
+        },
+        {
+          "unit_description" =>  "Lego",
+          "unit_count" =>10,
+          "unit_value" =>6.1,
+          "unit_weight" =>0.6,
+        },
+        {
+          "unit_description" => "Hot wheels",
+          "unit_count" =>13,
+          "unit_value" =>5.4,
+          "unit_weight" =>0.8,
+        }
+      ],
+      "service_code" => "TIEX",
+      "indicia_number" => "123456",
+      "insurance_required" => true,
+      "contains_only_documents" => true,
+      "export_type" => "Gift",
+      "harmonised_system_tariff" => "12121212",
+    }
+  ]
+}
+
+# create the label
+intl = intl_labeller.international_create(intl_label_options)
+
+# get the label details
+intl_details = intl_labeller.details(intl.label_id)
+
+# Print the tracking references
+intl_details.tracking_reference.map {|tr| puts tr}
+# download the ticket
+intl_ticket = intl_labeller.download(intl.label_id)
+
+# Write the ticket out
+File.open("#{intl.label_id}.pdf", 'w') do |f|
+  f.puts(intl_ticket.read)
+end
