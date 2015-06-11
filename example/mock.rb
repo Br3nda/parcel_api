@@ -8,6 +8,7 @@ client = ParcelApi::Client.new.tap do |config|
   config.password      = ENV['PASSWORD']
 end
 
+
 # Address examples
 
 query = '151 vic'
@@ -40,6 +41,7 @@ intl_details = address.international_details(intl_results.first.address_id)
 # dump the detail parts out
 intl_details.to_h.each {|k, v| puts "#{k}: #{v}"}
 
+
 # Tracking Example
 
 tracking = ParcelApi::Track.new
@@ -50,3 +52,74 @@ last_event = results.tracking_events.last
 puts results.carrier
 puts results.service
 puts last_event.event_datetime.to_s + ' ' + last_event.event_description
+
+
+# Labelling example
+
+labeller = ParcelApi::Label.new
+
+# Label options
+cp_label_options = {
+  "orientation" => "landscape",
+  "requests" => [
+    {
+      "carrier" => "COURIERPOST",
+      "sender_details" => {
+        "name" => "Glenn Dodd",
+        "phone" => "0274123456",
+        "email" => "glenn@example.co.nz",
+        "reference" => "654334",
+      },
+      "pickup_address" => {
+        "company" => "Glenns Acme Company",
+        "city" => "Auckland",
+        "floor" => "Floor 2",
+        "postcode" => "2102",
+        "street" => "25 Buller Crescent",
+        "suburb" => "Manurewa",
+        "unit_type" => "Flat",
+        "unit_value" => "2",
+      },
+      "receiver_details" => {
+        "name" => "Glenn Dodd",
+        "phone" => "0274123456",
+      },
+      "delivery_address" => {
+        "company" => "Acme Company",
+        "city" => "Auckland",
+        "floor" => "Floor 2",
+        "postcode" => "2102",
+        "street" => "151 Victoria Street",
+        "suburb" => "Manurewa",
+        "unit_type" => "Flat",
+        "unit_value" => "2",
+      },
+      "return_indicator" => "NORMAL",
+      "delivery_instructions" => "Don't feed my dog tonight",
+      "service_code" => "CPOLE",
+      "add_ons" => [],
+      "dimensions" => {
+        "weight" => "10",
+        "height" => "35",
+        "width" => "45",
+        "length" => "15",
+      }
+    }
+  ]
+}
+
+# create the label
+cp = labeller.create(cp_label_options)
+
+# get the label details
+details = labeller.details(cp.label_id)
+
+# Print the tracking references
+details.tracking_reference.map {|tr| puts tr}
+# download the ticket
+cp_ticket = labeller.download(cp.label_id)
+
+# Write the ticket out
+File.open("#{cp.label_id}.pdf", 'w') do |f|
+  f.puts(cp_ticket.read)
+end
