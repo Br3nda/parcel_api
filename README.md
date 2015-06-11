@@ -1,6 +1,6 @@
 # ParcelApi
 
-[![Build Status](https://magnum.travis-ci.com/etailer/parcel_api.svg?token=hCq9S5vXdep6iBazZLuu)](https://magnum.travis-ci.com/etailer/parcel_api) [![Code Climate](https://codeclimate.com/repos/552dc72e69568025e8001d73/badges/d0ccddbcdb28ce0d2834/gpa.svg)](https://codeclimate.com/repos/552dc72e69568025e8001d73/feed) [![Test Coverage](https://codeclimate.com/repos/552dc72e69568025e8001d73/badges/d0ccddbcdb28ce0d2834/coverage.svg)](https://codeclimate.com/repos/552dc72e69568025e8001d73/feed)
+[![RubyGem](https://badge.fury.io/rb/parcel_api.svg)](https://rubygems.org/gems/parcel_api)[![Build Status](https://magnum.travis-ci.com/etailer/parcel_api.svg?token=hCq9S5vXdep6iBazZLuu)](https://magnum.travis-ci.com/etailer/parcel_api) [![Code Climate](https://codeclimate.com/repos/552dc72e69568025e8001d73/badges/d0ccddbcdb28ce0d2834/gpa.svg)](https://codeclimate.com/repos/552dc72e69568025e8001d73/feed) [![Test Coverage](https://codeclimate.com/repos/552dc72e69568025e8001d73/badges/d0ccddbcdb28ce0d2834/coverage.svg)](https://codeclimate.com/repos/552dc72e69568025e8001d73/feed)
 
 Ruby wrapper for [NZ Post's Shipping APIs](https://www.nzpost.co.nz/developer-centre#parcel).
 
