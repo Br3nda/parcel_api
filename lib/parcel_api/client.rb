@@ -1,24 +1,59 @@
-require 'faraday'
-require 'faraday_middleware'
-
 module ParcelApi
   class Client
-    def self.create(options={})
-      if !options[:client_id] || !options[:client_secret] || !options[:username] || !options[:password]
-        raise ParcelApi::Error, "Missing required client identifier."
-      end
-      connection = Faraday.new(url: options[:address]) do |conn|
-        conn.request :oauth2,
-        client_id: options[:client_id],
-        client_secret: options[:client_secret],
-        username: options[:username],
-        password: options[:password],
-        grant_type: 'password'
-        conn.request :json
+
+    attr_accessor :client_id,
+      :client_secret,
+      :username,
+      :password,
+      :address,
+      :auth_address
+
+    def self.connection
+      ParcelApi::Client.new.connection
+    end
+
+    def initialize
+      @client_id     = client_id     || ENV['CLIENT_ID']
+      @client_secret = client_secret || ENV['CLIENT_SECRET']
+      @username      = username      || ENV['USERNAME']
+      @password      = password      || ENV['PASSWORD']
+      @address       = address       || 'https://api.nzpost.co.nz'
+      @auth_address  = auth_address  || 'https://oauth.nzpost.co.nz/as/token.oauth2'
+    end
+
+    def connection
+      Faraday.new(url: @address) do |conn|
+        conn.authorization 'Bearer', token
+        conn.headers['client_id'] = @client_id
+        conn.request  :json
         conn.response :json
-        conn.use ParcelApi::ResponseError      # raise exceptions on 40x, 50x responses
-        conn.adapter Faraday.default_adapter
+        conn.use      ParcelApi::ResponseError
+        conn.adapter  Faraday.default_adapter
       end
     end
+
+    private
+
+    def token
+      @token ||= begin
+        params = {
+          client_id:     @client_id,
+          client_secret: @client_secret,
+          username:      @username,
+          password:      @password,
+          grant_type:    'password',
+        }
+
+        auth_api = Faraday.new do |conn|
+          conn.request  :url_encoded
+          conn.response :json
+          conn.use      ParcelApi::ResponseError
+          conn.adapter  Faraday.default_adapter
+        end
+        response = auth_api.post @auth_address, params
+        response.body['access_token']
+      end
+    end
+
   end
 end
