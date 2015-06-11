@@ -4,15 +4,12 @@ module ParcelApi
   # return tracking information for a specific tracking reference.
 
   class Track
-
-    attr_accessor :connection
-
     PARCELTRACK_URL = '/ParcelTrack/2.0/parcels'
 
     # Creates a new ParcelApi::Track instance.
 
-    def initialize
-      @connection = connection || ParcelApi::Client.connection
+    def initialize(connection=nil)
+      @connection ||= connection || ParcelApi::Client.connection
     end
 
     # Return details for a specific tracking reference.

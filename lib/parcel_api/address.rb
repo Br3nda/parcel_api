@@ -4,16 +4,13 @@ module ParcelApi
   # Search International Addresses and Get Specifc International Address Detail.
 
   class Address
-
-    attr_accessor :connection
-
     DOMESTIC_URL = '/ParcelAddress/2.0/domestic/addresses'
     INTERNATIONAL_URL = '/ParcelAddress/2.0/international/addresses'
 
     # Creates a new ParcelApi::Address instance.
 
-    def initialize
-      @connection = connection || ParcelApi::Client.connection
+    def initialize(connection=nil)
+      @connection ||= connection || ParcelApi::Client.connection
     end
 
     # Search for Domestic (NZ) Address

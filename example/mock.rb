@@ -288,5 +288,5 @@ pickup_params = {
   estimated_weight: '2.5',
 }
 
-pickup = ParcelApi::Pickup.new
+pickup = ParcelApi::Pickup.new(client.connection) # use a custom connection
 pickup.create(pickup_params)

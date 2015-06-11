@@ -4,15 +4,12 @@ module ParcelApi
   # The integrator provides the pick up location in the form of a site id or an address to create the pick up record.
 
   class Pickup
-
-    attr_accessor :connection
-
     PARCELPICKUP_URL = '/parcelpickup/2.0/'
 
     # Creates a new ParcelApi::Pickup instance.
 
-    def initialize
-      @connection = connection || ParcelApi::Client.connection
+    def initialize(connection=nil)
+      @connection ||= connection || ParcelApi::Client.connection
     end
 
     # Create a new parcel booking

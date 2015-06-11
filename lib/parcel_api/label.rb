@@ -4,15 +4,12 @@ module ParcelApi
   # and download labels.
 
   class Label
-
-    attr_accessor :connection
-
     LABEL_URL = '/ParcelLabel/2.0/labels'
 
     # Creates a new ParcelApi::Label instance.
 
-    def initialize
-      @connection = connection || ParcelApi::Client.connection
+    def initialize(connection=nil)
+      @connection ||= connection || ParcelApi::Client.connection
     end
 
     # Create a label with the specified options
