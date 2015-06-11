@@ -1,7 +1,7 @@
 module ParcelApi
 
-  #This module provides API requests to track the parcels and
-  #return tracking information for a specific tracking reference.
+  # This module provides API requests to track the parcels and
+  # return tracking information for a specific tracking reference.
 
   class Track
 
@@ -22,13 +22,11 @@ module ParcelApi
     def details(tracking_reference)
       details_url = File.join(PARCELTRACK_URL, tracking_reference.to_s)
       response = @connection.get details_url
-
       events = response.body.tap do |d|
         d.delete('success')
         d['tracking_events'].map {|e| e['event_datetime'] = Time.parse(e['event_datetime'])}
         d['tracking_events'].sort_by! {|k| k['event_datetime'].to_i}
       end
-
       RecursiveOpenStruct.new(events, recurse_over_arrays: true)
     end
 

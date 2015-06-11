@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://oauth.nzpost.co.nz/as/token.oauth2
+    body:
+      encoding: UTF-8
+      string: client_id=123&client_secret=456&grant_type=password&password=password&username=test%40example.com
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 11 Jun 2015 08:12:21 GMT
+      Cache-Control:
+      - no-cache, no-store
+      Pragma:
+      - no-cache
+      Max-Age:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Set-Cookie:
+      - PF=c3yQlmy3fADIcLNz27kU8D;Path=/;Secure;HttpOnly
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: "{\"access_token\":\"eyJhbGciOiJIUzI1NiIsImtpZCI6IlRFU1QifQ.eyJjbGllbnRpZCI6ImJlODEzNDE5NzE4NjQ5YWI5MmQyOGNiNmY5NmYzMDhlIiwidXNlcm5hbWUiOiJyb2JlcnRAZXRhaWxlci5jby5ueiIsImV4cCI6MTQzNDA5Njc0MSwic2NvcGUiOltdLCJjbGllbnRfaWQiOiJiZTgxMzQxOTcxODY0OWFiOTJkMjhjYjZmOTZmMzA4ZSJ9._qq2Ku8gNahzKUu62goFPoZY7Co_qWubu5VYNZt884Y\",\"token_type\":\"Bearer\",\"expires_in\":86399}\r\n"
+    http_version: 
+  recorded_at: Thu, 11 Jun 2015 08:12:21 GMT
+recorded_with: VCR 2.9.3
