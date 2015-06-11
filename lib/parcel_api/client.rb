@@ -1,6 +1,3 @@
-require 'faraday'
-require 'faraday_middleware'
-
 module ParcelApi
   class Client
 
@@ -8,18 +5,25 @@ module ParcelApi
       :client_secret,
       :username,
       :password,
-      :address
+      :address,
+      :auth_address
 
-    def initialize
-      @client_id = client_id || ENV['CLIENT_ID']
-      @client_secret = client_secret || ENV['CLIENT_SECRET']
-      @username = username || ENV['USERNAME']
-      @password = password || ENV['PASSWORD']
+    def self.connection
+      ParcelApi::Client.new.connection
     end
 
-    def create
-      Faraday.new(url: address) do |conn|
-        conn.authorization :bearer, token
+    def initialize
+      @client_id     = client_id     || ENV['CLIENT_ID']
+      @client_secret = client_secret || ENV['CLIENT_SECRET']
+      @username      = username      || ENV['USERNAME']
+      @password      = password      || ENV['PASSWORD']
+      @address       = address       || 'https://api.nzpost.co.nz'
+      @auth_address  = auth_address  || 'https://oauth.nzpost.co.nz/as/token.oauth2'
+    end
+
+    def connection
+      Faraday.new(url: @address) do |conn|
+        conn.authorization 'Bearer', token
         conn.headers['client_id'] = @client_id
         conn.request  :json
         conn.response :json
@@ -40,13 +44,13 @@ module ParcelApi
           grant_type:    'password',
         }
 
-        connection = Faraday.new do |conn|
+        auth_api = Faraday.new do |conn|
           conn.request  :url_encoded
           conn.response :json
           conn.use      ParcelApi::ResponseError
           conn.adapter  Faraday.default_adapter
         end
-        response = connection.post 'https://oauth.nzpost.co.nz/as/token.oauth2', params
+        response = auth_api.post @auth_address, params
         response.body['access_token']
       end
     end

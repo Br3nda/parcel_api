@@ -8,6 +8,15 @@ client = ParcelApi::Client.new.tap do |config|
   config.password      = ENV['PASSWORD']
 end
 
+tracking = ParcelApi::Track.new
+results = tracking.details('1818120002213401AKL003HN')
+
+# example tracking output
+last_event = results.tracking_events.last
+puts results.carrier
+puts results.service
+puts last_event.event_datetime.to_s + ' ' + last_event.event_description
+
 # address = ParcelApi::Address.new
 #
 # #Search Domestic Address for NZ

@@ -9,10 +9,6 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Robert Coleman']
   spec.email         = ['github@robert.net.nz']
 
-  if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = 'TODO: Set to \'http://mygemserver.com\' to prevent pushes to rubygems.org, or delete to allow pushes to any server.'
-  end
-
   spec.summary       = %q{Ruby client for NZ Post's Parcel APIs}
   spec.homepage      = 'https://github.com/etailer/parcel_api'
   spec.license       = 'MIT'
@@ -25,13 +21,14 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'thor', '~> 0.19'
   spec.add_dependency 'faraday', '~> 0.9'
   spec.add_dependency 'faraday_middleware', '~> 0.9'
-  spec.add_dependency 'oauth2', '~>1.0'
+  spec.add_dependency 'oauth2', '~> 1.0'
+  spec.add_dependency 'recursive-open-struct', '~> 0.6'
 
   spec.add_development_dependency 'bundler', '~> 1.8'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.2'
   spec.add_development_dependency 'pry', '~> 0.10'
-  spec.add_development_dependency 'webmock', '~>1.21'
-  spec.add_development_dependency 'vcr', '~>2.9'
+  spec.add_development_dependency 'webmock', '~> 1.21'
+  spec.add_development_dependency 'vcr', '~> 2.9'
   spec.add_development_dependency 'yard', '~> 0.8'
 end
