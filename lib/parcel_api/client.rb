@@ -9,7 +9,7 @@ module ParcelApi
       :auth_address
 
     def self.connection
-      ParcelApi::Client.new.connection
+      @connection = ParcelApi::Client.new.connection
     end
 
     def initialize

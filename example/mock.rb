@@ -6,6 +6,7 @@ client = ParcelApi::Client.new.tap do |config|
   config.client_secret = ENV['CLIENT_SECRET']
   config.username      = ENV['USERNAME']
   config.password      = ENV['PASSWORD']
+  config.address       = 'https://api.uat.nzpost.co.nz/'
 end
 
 
@@ -243,3 +244,49 @@ intl_params = {
 }
 
 intl_options = shipping_options.get_international(intl_params)
+
+# Pickup Example
+
+pickup_params = {
+  carrier: 'CourierPost',
+  message_id: 'Test Message ID',
+  message_date_time: '2015-01-16T141950',
+  caller: 'Test Caller',
+  account_number: '913270XX',
+  client_contact: 'Test Client Contact',
+  client_email: 'test@example.com',
+  client_phone: '6490000000',
+  customer_reference: 'Test Customer Reference',
+  pickup_address: {
+    location_contact: 'Test Pickup Address Location Contact',
+    location_phone: '6490000000',
+    email_address: 'test@example.com',
+    company: 'Test Pickup Company Name',
+    dpid: '2986570',
+    instructions: 'TestPickupLocationInstructions',
+  },
+  delivery_address: {
+    location_contact: 'Test Delivery Location Contact Name',
+    location_phone: '6490000000',
+    email_address: 'test@example.com',
+    company: 'Test Delivery Company Name',
+    unit_type: 'Suite',
+    unit_value: '4',
+    floor: '2',
+    building: 'Test Delivery Building Name',
+    street_number_name: '42C Tawa Drive',
+    suburb: 'Albany',
+    city: 'Auckland',
+    postcode: '0632',
+    instructions: 'Test Delivery Location Instructions',
+  },
+  delivery_confirmation_request: 'true',
+  email_address: 'test@example.com',
+  note: 'Test Note',
+  pickup_date_time: '2015-06-16T141950',
+  quantity: '2',
+  estimated_weight: '2.5',
+}
+
+pickup = ParcelApi::Pickup.new
+pickup.create(pickup_params)

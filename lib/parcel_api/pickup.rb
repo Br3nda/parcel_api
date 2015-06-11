@@ -7,7 +7,7 @@ module ParcelApi
 
     attr_accessor :connection
 
-    PARCELPICKUP_URL = '/parcelpickup/2.0/parcels'
+    PARCELPICKUP_URL = '/parcelpickup/2.0/'
 
     # Creates a new ParcelApi::Pickup instance.
 
