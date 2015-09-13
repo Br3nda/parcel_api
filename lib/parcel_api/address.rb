@@ -4,22 +4,19 @@ module ParcelApi
   # Search International Addresses and Get Specifc International Address Detail.
 
   class Address
-
-    attr_accessor :connection
-
     DOMESTIC_URL = '/ParcelAddress/2.0/domestic/addresses'
     INTERNATIONAL_URL = '/ParcelAddress/2.0/international/addresses'
 
     # Creates a new ParcelApi::Address instance.
 
-    def initialize
-      @connection = connection || ParcelApi::Client.connection
+    def initialize(connection=nil)
+      @connection ||= connection || ParcelApi::Client.connection
     end
 
-    # Search for Domestic (NZ) Address
-    # @param [String] query the query to search for
-    # @param [Integer] count the number of search results
-    # @return [Array] return array of addresses
+    # Search for a Domestic (NZ) Address
+    # @param [String] characters to search for
+    # @param [Integer] number of search results to return (max 10)
+    # @return [Array] array of addresses
 
     def search(query, count=10)
       return [] if query.length < 4
@@ -32,9 +29,9 @@ module ParcelApi
       addresses.map {|address| OpenStruct.new(address)}
     end
 
-    # Return address details for an address id
-    # @param address_id [Srting]
-    # @return Object Of complete address detail
+    # Return domestic address details for a domestic address id
+    # @param address_id [String]
+    # @return address detail object
 
     def details(address_id)
       details_url = File.join(DOMESTIC_URL, address_id.to_s)
@@ -43,9 +40,10 @@ module ParcelApi
     end
 
     # Search for an International Address
-    # @param [String] query the query to search for
-    # @param [Integer] count the number of search results
-    # @return [Array] return array of international addresses
+    # @param [String] characters to search for
+    # @param [Integer] number of search results to return (max 10)
+    # @param [String] country code for results - listed here: https://developers.google.com/public-data/docs/canonical/countries_csv/
+    # @return [Array] array of international addresses
 
     def international_search(query, count=5, country_code=nil)
       return [] if query.length < 4
@@ -56,7 +54,7 @@ module ParcelApi
 
     # Return international address details for a specific international address id
     # @param address_id [String]
-    # @return Object of international address detail
+    # @return international address detail
 
     def international_details(address_id)
       details_url = File.join(INTERNATIONAL_URL, address_id.to_s)

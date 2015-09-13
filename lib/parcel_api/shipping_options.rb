@@ -5,16 +5,13 @@ module ParcelApi
   # Both domestic and international.
 
   class ShippingOptions
-
-    attr_accessor :connection
-
     DOMESTIC_URL = '/ShippingOptions/2.0/domestic'
     INTERNATIONAL_URL = '/ShippingOptions/2.0/international'
 
     # Creates a new ParcelApi::ShippingOptions instance.
 
-    def initialize
-      @connection = connection || ParcelApi::Client.connection
+    def initialize(connection=nil)
+      @connection ||= connection || ParcelApi::Client.connection
     end
 
     # Search for Domestic (NZ) Shipping Options

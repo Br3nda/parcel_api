@@ -9,7 +9,7 @@ module ParcelApi
       :auth_address
 
     def self.connection
-      ParcelApi::Client.new.connection
+      @connection ||= new.connection
     end
 
     def initialize
@@ -27,7 +27,7 @@ module ParcelApi
         conn.headers['client_id'] = @client_id
         conn.request  :json
         conn.response :json,  :content_type => /\bjson$/
-        conn.use      ParcelApi::ResponseError
+        conn.use      FaradayMiddleware::RaiseHttpException
         conn.adapter  Faraday.default_adapter
       end
     end
@@ -47,7 +47,7 @@ module ParcelApi
         auth_api = Faraday.new do |conn|
           conn.request  :url_encoded
           conn.response :json
-          conn.use      ParcelApi::ResponseError
+          conn.use      FaradayMiddleware::RaiseHttpException
           conn.adapter  Faraday.default_adapter
         end
         response = auth_api.post @auth_address, params

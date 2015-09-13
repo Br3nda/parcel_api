@@ -6,6 +6,7 @@ client = ParcelApi::Client.new.tap do |config|
   config.client_secret = ENV['CLIENT_SECRET']
   config.username      = ENV['USERNAME']
   config.password      = ENV['PASSWORD']
+  config.address       = 'https://api.uat.nzpost.co.nz/'
 end
 
 
@@ -218,7 +219,7 @@ File.open("#{intl.label_id}.pdf", 'w') do |f|
 end
 
 
-# ShippingOptions Example
+ShippingOptions Example
 
 shipping_options = ParcelApi::ShippingOptions.new
 
@@ -232,6 +233,7 @@ params = {
 }
 
 domestic_options = shipping_options.get_domestic(params)
+domestic_options.to_h.each {|k, v| puts "#{k}: #{v}"}
 
 intl_params = {
   value: 100,
@@ -243,3 +245,23 @@ intl_params = {
 }
 
 intl_options = shipping_options.get_international(intl_params)
+intl_options.to_h.each {|k, v| puts "#{k}: #{v}"}
+
+# Pickup Example
+
+pickup_params = {
+  carrier: 'CourierPost',
+  message_id: 'Test Message ID',
+  message_date_time: '2015-05-27T14:19:50',
+  account_number: '91327067',
+  pickup_address: {
+    site_code: '28979',
+    instructions: 'TEST'
+  },
+  pickup_date_time: '2015-05-28T17:00:00',
+  quantity: 1
+}
+
+pickup = ParcelApi::Pickup.new(client.connection) # use a custom connection
+pickup_results = pickup.create(pickup_params)
+pickup_results.to_h.each {|k, v| puts "#{k}: #{v}"}

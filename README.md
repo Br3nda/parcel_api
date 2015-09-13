@@ -1,10 +1,18 @@
 # ParcelApi
 
-[![Build Status](https://magnum.travis-ci.com/etailer/parcel_api.svg?token=hCq9S5vXdep6iBazZLuu)](https://magnum.travis-ci.com/etailer/parcel_api) [![Code Climate](https://codeclimate.com/repos/552dc72e69568025e8001d73/badges/d0ccddbcdb28ce0d2834/gpa.svg)](https://codeclimate.com/repos/552dc72e69568025e8001d73/feed) [![Test Coverage](https://codeclimate.com/repos/552dc72e69568025e8001d73/badges/d0ccddbcdb28ce0d2834/coverage.svg)](https://codeclimate.com/repos/552dc72e69568025e8001d73/feed)
+[![RubyGem](https://badge.fury.io/rb/parcel_api.svg)](https://rubygems.org/gems/parcel_api)[![Build Status](https://magnum.travis-ci.com/etailer/parcel_api.svg?token=hCq9S5vXdep6iBazZLuu)](https://magnum.travis-ci.com/etailer/parcel_api) [![Code Climate](https://codeclimate.com/repos/552dc72e69568025e8001d73/badges/d0ccddbcdb28ce0d2834/gpa.svg)](https://codeclimate.com/repos/552dc72e69568025e8001d73/feed) [![Test Coverage](https://codeclimate.com/repos/552dc72e69568025e8001d73/badges/d0ccddbcdb28ce0d2834/coverage.svg)](https://codeclimate.com/repos/552dc72e69568025e8001d73/feed)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/parcel_api`. To experiment with that code, run `bin/console` for an interactive prompt.
+Ruby wrapper for [NZ Post's Shipping APIs](https://www.nzpost.co.nz/developer-centre#parcel).
 
-TODO: Delete this and the text above, and describe your gem
+You must be a registered user of these APIs to use this gem.
+
+__Features__
+
+* ParcelAddress
+* ShippingOptions
+* ParcelPickUp
+* ParcelLabel
+* ParcelTrack
 
 ## Installation
 
@@ -16,54 +24,50 @@ gem 'parcel_api'
 
 And then execute:
 
-    $ bundle
+`$ bundle`
 
 Or install it yourself as:
 
-    $ gem install parcel_api
+`$ gem install parcel_api`
 
 ## Usage
 
-Parcel API is a wrapper that contains methods which return valid matching Domestic or International Addresses. You need to configure auth credentials to make API calls. It's recommended that you provide these via your environment.
-
 ### Configuration Options
 
-You can configure credentails via `ParcelApi::Address.new()`.
+By default credentials are taken from the local environment, for this to work the following ENV variables must be set:
+
+* `ENV['CLIENT_ID']`
+* `ENV['CLIENT_SECRET']`
+* `ENV['USERNAME']`
+* `ENV['PASSWORD']`
+
+You can also configure credentials via `ParcelApi::Client.new`:
 
 ```ruby
-client = ParcelApi::Address.new(client_id: ENV['CLIENT_ID'], client_secret: ENV['CLIENT_SECRET'], 
-  username: ENV['USER_NAME'], password: ENV['PASSWORD']
-)
+client = ParcelApi::Client.new.tap do |config|
+  config.client_id     = ENV['CLIENT_ID']
+  config.client_secret = ENV['CLIENT_SECRET']
+  config.username      = ENV['USERNAME']
+  config.password      = ENV['PASSWORD']
+  config.address       = 'https://api.uat.nzpost.co.nz/' # defaults to api.nzpost.co.nz
+end
 ```
 
-Please take care to **never commit credentials to source control**. We strongly recommended loading credentials from an external source.
+Client connections can be passed to each method:
 
-### Domestic Address Search(NZ)
+`ParcelApi::Address(client.connection)`
 
-Returns a list of suggested domestic addresses.
+## Documentation
 
-```ruby
-# To retrieve a list of Domestic addresses for NZ.
+Documentation is available [here](http://www.rubydoc.info/github/etailer/parcel_api)
 
-client.search('151 vic', 10)
-```
-
-### Get Address Detail(NZ)
-
-Returns the detailed information for a single domestic address identifier.
-
-```ruby
-# To retrieve complete address detail for single place(NZ) pass address_id to this method.
-
-client.address_detail('325595')
-```
+Some usage examples are also available [here](example/mock.rb)
 
 
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release` to create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 
