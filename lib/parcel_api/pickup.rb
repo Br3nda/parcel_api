@@ -4,7 +4,7 @@ module ParcelApi
   # The integrator provides the pick up location in the form of a site id or an address to create the pick up record.
 
   class Pickup
-    PARCELPICKUP_URL = '/parcelpickup/2.0/'
+    PARCELPICKUP_URL = '/ParcelPickUp/2.0/bookings'
 
     # Creates a new ParcelApi::Pickup instance.
 
