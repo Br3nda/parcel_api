@@ -35,24 +35,22 @@ module ParcelApi
     private
 
     def token
-      @token ||= begin
-        params = {
-          client_id:     @client_id,
-          client_secret: @client_secret,
-          username:      @username,
-          password:      @password,
-          grant_type:    'password',
-        }
+      params = {
+        client_id:     @client_id,
+        client_secret: @client_secret,
+        username:      @username,
+        password:      @password,
+        grant_type:    'password',
+      }
 
-        auth_api = Faraday.new do |conn|
-          conn.request  :url_encoded
-          conn.response :json
-          conn.use      FaradayMiddleware::RaiseHttpException
-          conn.adapter  Faraday.default_adapter
-        end
-        response = auth_api.post @auth_address, params
-        response.body['access_token']
+      auth_api = Faraday.new do |conn|
+        conn.request  :url_encoded
+        conn.response :json
+        conn.use      FaradayMiddleware::RaiseHttpException
+        conn.adapter  Faraday.default_adapter
       end
+      response = auth_api.post @auth_address, params
+      response.body['access_token']
     end
 
   end
