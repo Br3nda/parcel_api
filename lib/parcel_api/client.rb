@@ -26,7 +26,7 @@ module ParcelApi
         conn.authorization 'Bearer', token
         conn.headers['client_id'] = @client_id
         conn.request  :json
-        conn.response :json,  :content_type => /\bjson$/
+        conn.response :json, :content_type => /\bjson$/
         conn.use      FaradayMiddleware::RaiseHttpException
         conn.adapter  Faraday.default_adapter
       end

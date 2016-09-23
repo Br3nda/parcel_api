@@ -4,6 +4,7 @@ module ParcelApi
   # Search International Addresses and Get Specifc International Address Detail.
 
   class Address
+    AUSTRALIAN_URL = '/ParcelAddress/2.0/australian/addresses'
     DOMESTIC_URL = '/ParcelAddress/2.0/domestic/addresses'
     INTERNATIONAL_URL = '/ParcelAddress/2.0/international/addresses'
 
@@ -37,6 +38,25 @@ module ParcelApi
       details_url = File.join(DOMESTIC_URL, address_id.to_s)
       response = @connection.get details_url
       OpenStruct.new(response.body['address'])
+    end
+
+    # Search for an Australian Address
+    # @param [String] characters to search for
+    # @param [Integer] number of search results to return (max 10)
+    # @return [Array] array of australian addresses
+
+    def australian_search(query, count=5)
+      international_search(query, count, 'AU')
+    end
+
+    # Return australian address details for a specific international address id
+    # @param address_id [String]
+    # @return australian address detail
+
+    def australian_details(address_id)
+      details_url = File.join(AUSTRALIAN_URL, address_id.to_s)
+      response = @connection.get details_url
+      RecursiveOpenStruct.new(response.body['result'], recurse_over_arrays: true)
     end
 
     # Search for an International Address

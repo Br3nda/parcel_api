@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.nzpost.co.nz/ParcelAddress/2.0/international/addresses?count=3&country_code=AU&q=38%20Lap
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer eyJhbGciOiJIUzI1NiIsImtpZCI6IlRFU1QifQ.eyJjbGllbnRpZCI6ImEwNDlhYjlkN2E2OTRlOWFiMGI4ZjMwZGUwMmU4ZDA2IiwidXNlcmlkIjoicm9iZXJ0QGV0YWlsZXIuY28ubnoiLCJ1c2VybmFtZSI6InJvYmVydEBldGFpbGVyLmNvLm56IiwiZXhwIjoxNDc0NzExOTU1LCJzY29wZSI6W10sImNsaWVudF9pZCI6ImEwNDlhYjlkN2E2OTRlOWFiMGI4ZjMwZGUwMmU4ZDA2IiwiYWNjZXNzX2d1aWQiOiJkR2lIRjMxQ1M3cVdMWkh2SEtUWkl0UUdJbEo4QnBIRyJ9.Bbb01AlIG1aUjhXUmVoe9MCHw7KRV0BDUWh8QzumzAU
+      Client-Id:
+      - a049ab9d7a694e9ab0b8f30de02e8d06
+      User-Agent:
+      - Faraday v0.9.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 23 Sep 2016 10:13:29 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '423'
+      Connection:
+      - keep-alive
+      X-Mule-Encoding:
+      - UTF-8
+      X-Mule-Session:
+      - rO0ABXNyACNvcmcubXVsZS5zZXNzaW9uLkRlZmF1bHRNdWxlU2Vzc2lvbi7rdtEW7GGKAwAFWgAFdmFsaWRMAA1mbG93Q29uc3RydWN0dAAmTG9yZy9tdWxlL2FwaS9jb25zdHJ1Y3QvRmxvd0NvbnN0cnVjdDtMAAJpZHQAEkxqYXZhL2xhbmcvU3RyaW5nO0wACnByb3BlcnRpZXN0AA9MamF2YS91dGlsL01hcDtMAA9zZWN1cml0eUNvbnRleHR0ACdMb3JnL211bGUvYXBpL3NlY3VyaXR5L1NlY3VyaXR5Q29udGV4dDt4cAFwdAAkNWZjYWQwNzQtODE3Ni0xMWU2LWI1ZDEtMDIyOWJiNjJjYWE1c3IAJWphdmEudXRpbC5Db2xsZWN0aW9ucyRTeW5jaHJvbml6ZWRNYXAbc/kJS0s5ewMAAkwAAW1xAH4AA0wABW11dGV4dAASTGphdmEvbGFuZy9PYmplY3Q7eHBzcgAkb3JnLm11bGUudXRpbC5DYXNlSW5zZW5zaXRpdmVIYXNoTWFwndHZ72dFzgADAAB4cHcMP0AAAAAAABAAAAAAeHEAfgAJeHB4
+      X-Ratelimit-Limit:
+      - '15'
+      X-Ratelimit-Remaining:
+      - '14'
+      X-Ratelimit-Reset:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: '{"success":true,"addresses":[{"full_address":"38 Lapoinya Crescent,
+        Warana, Queensland, Australia","address_id":"ChIJN9P69Riek2sRyjOVFir3gm0"},{"full_address":"38
+        Lapstone Street, The Ponds, New South Wales, Australia","address_id":"ChIJQ6b4X-OeEmsRFoUY3M1TUKk"},{"full_address":"38
+        Lapthorne Close, Don, Tasmania, Australia","address_id":"ChIJzQ0OBq_Me6oRB5y3Rjm01Js"}],"message_id":"4074cfa0-8176-11e6-b5d1-0229bb62caa5"}'
+    http_version: 
+  recorded_at: Fri, 23 Sep 2016 10:13:29 GMT
+recorded_with: VCR 2.9.3

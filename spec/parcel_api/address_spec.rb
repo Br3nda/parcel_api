@@ -63,4 +63,19 @@ describe ParcelApi::Address, :vcr do
       expect(response).to_not be_empty
     end
   end
+
+  context 'Australian Address Detail' do
+    it 'should return complete address detail for specific australian address' do
+      response = address.australian_details('ChIJzQ0OBq_Me6oRB5y3Rjm01Js')
+      expect(response).to_not be_nil
+    end
+  end
+
+  context 'Retrieve 3 Australian Addresses' do
+    it 'should retreive australian addresses with 3 matches returned' do
+      response = address.australian_search('38 Lap', 3)
+      expect(response.count).to eq 3
+      expect(response).to_not be_empty
+    end
+  end
 end
