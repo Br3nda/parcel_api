@@ -25,7 +25,7 @@ module ParcelApi
       response = @connection.get DOMESTIC_URL, { q: query, count: count }
       addresses = response.body['addresses'].each do |a|
         a['address_id'] = Integer(a['address_id'])
-        a['dpid'] = Integer(a['dpid'])
+        a['dpid'] = Integer(a['dpid']) if a['dpid']
       end
       addresses.map {|address| OpenStruct.new(address)}
     end
