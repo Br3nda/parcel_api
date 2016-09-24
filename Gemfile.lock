@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    parcel_api (0.3.0)
+    parcel_api (0.4.0)
       faraday (~> 0.9)
       faraday_middleware (~> 0.9)
       oauth2 (~> 1.0)
@@ -83,4 +83,4 @@ DEPENDENCIES
   yard (~> 0.8)
 
 BUNDLED WITH
-   1.11.2
+   1.12.5
