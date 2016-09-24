@@ -56,7 +56,7 @@ module ParcelApi
     def australian_details(address_id)
       details_url = File.join(AUSTRALIAN_URL, address_id.to_s)
       response = @connection.get details_url
-      RecursiveOpenStruct.new(response.body['result'], recurse_over_arrays: true)
+      RecursiveOpenStruct.new(response.body['address'], recurse_over_arrays: true)
     end
 
     # Search for an International Address
