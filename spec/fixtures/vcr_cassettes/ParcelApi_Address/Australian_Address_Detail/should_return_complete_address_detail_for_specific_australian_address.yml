@@ -2,15 +2,15 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.nzpost.co.nz/ParcelAddress/2.0/australian/addresses/ChIJzQ0OBq_Me6oRB5y3Rjm01Js
+    uri: https://api.nzpost.co.nz/ParcelAddress/2.0/australia/addresses/ChIJzQ0OBq_Me6oRB5y3Rjm01Js
     body:
       encoding: US-ASCII
       string: ''
     headers:
       Authorization:
-      - Bearer eyJhbGciOiJIUzI1NiIsImtpZCI6IlRFU1QifQ.eyJjbGllbnRpZCI6ImJlODEzNDE5NzE4NjQ5YWI5MmQyOGNiNmY5NmYzMDhlIiwidXNlcm5hbWUiOiJyb2JlcnRAZXRhaWxlci5jby5ueiIsImV4cCI6MTQzNDA5Njc0Miwic2NvcGUiOltdLCJjbGllbnRfaWQiOiJiZTgxMzQxOTcxODY0OWFiOTJkMjhjYjZmOTZmMzA4ZSJ9.PDU-xsivU4Z-_b3_C-S9sblQk18W2JzbrrYWAQ2X7V0
+      - Bearer eyJhbGciOiJIUzI1NiIsImtpZCI6IlRFU1QifQ.eyJjbGllbnRpZCI6ImEwNDlhYjlkN2E2OTRlOWFiMGI4ZjMwZGUwMmU4ZDA2IiwidXNlcmlkIjoicm9iZXJ0QGV0YWlsZXIuY28ubnoiLCJ1c2VybmFtZSI6InJvYmVydEBldGFpbGVyLmNvLm56IiwiZXhwIjoxNDc0NzExOTU1LCJzY29wZSI6W10sImNsaWVudF9pZCI6ImEwNDlhYjlkN2E2OTRlOWFiMGI4ZjMwZGUwMmU4ZDA2IiwiYWNjZXNzX2d1aWQiOiJkR2lIRjMxQ1M3cVdMWkh2SEtUWkl0UUdJbEo4QnBIRyJ9.Bbb01AlIG1aUjhXUmVoe9MCHw7KRV0BDUWh8QzumzAU
       Client-Id:
-      - 123
+      - '123'
       User-Agent:
       - Faraday v0.9.2
       Accept-Encoding:
@@ -19,44 +19,49 @@ http_interactions:
       - "*/*"
   response:
     status:
-      code: 404
-      message: Not Found
+      code: 200
+      message: OK
     headers:
       Server:
       - nginx
       Date:
-      - Fri, 23 Sep 2016 10:20:59 GMT
+      - Sat, 24 Sep 2016 05:58:18 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '230'
+      - '447'
       Connection:
       - keep-alive
-      X-Agw-Clientid:
-      - 123
-      X-Agw-Userid:
-      - test@example.com
-      X-Agw-Username:
-      - test@example.com
       X-Mule-Encoding:
       - UTF-8
-      X-Pingfederate-Clientid:
-      - 123
-      X-Pingfederate-Userid:
-      - test@example.com
-      X-Pingfederate-Username:
-      - test@example.com
+      X-Mule-Session:
+      - rO0ABXNyACNvcmcubXVsZS5zZXNzaW9uLkRlZmF1bHRNdWxlU2Vzc2lvbi7rdtEW7GGKAwAFWgAFdmFsaWRMAA1mbG93Q29uc3RydWN0dAAmTG9yZy9tdWxlL2FwaS9jb25zdHJ1Y3QvRmxvd0NvbnN0cnVjdDtMAAJpZHQAEkxqYXZhL2xhbmcvU3RyaW5nO0wACnByb3BlcnRpZXN0AA9MamF2YS91dGlsL01hcDtMAA9zZWN1cml0eUNvbnRleHR0ACdMb3JnL211bGUvYXBpL3NlY3VyaXR5L1NlY3VyaXR5Q29udGV4dDt4cAFwdAAkZTQ0YjgwNjQtODIxYi0xMWU2LWI1ZDEtMDIyOWJiNjJjYWE1c3IAJWphdmEudXRpbC5Db2xsZWN0aW9ucyRTeW5jaHJvbml6ZWRNYXAbc/kJS0s5ewMAAkwAAW1xAH4AA0wABW11dGV4dAASTGphdmEvbGFuZy9PYmplY3Q7eHBzcgAkb3JnLm11bGUudXRpbC5DYXNlSW5zZW5zaXRpdmVIYXNoTWFwndHZ72dFzgADAAB4cHcMP0AAAAAAABAAAAAAeHEAfgAJeHB4
       X-Ratelimit-Limit:
       - '15'
       X-Ratelimit-Remaining:
-      - '13'
+      - '14'
       X-Ratelimit-Reset:
       - '0'
     body:
       encoding: UTF-8
-      string: '{"success":false,"errors":[{"code":"40401","message":"Not Found","details":"The
-        resource you are looking for does not exist, please consult the API documentation
-        if in doubt."}],"message_id":"6c4b62f0-8177-11e6-b5d1-0229bb62caa5"}'
-    http_version:
-  recorded_at: Fri, 23 Sep 2016 10:20:59 GMT
+      string: |-
+        {
+          "success" : true,
+          "address" : {
+            "street_number" : "38",
+            "street" : "Lapthorne Close",
+            "suburb" : "Don",
+            "state" : "Tasmania",
+            "state_code" : "TAS",
+            "postcode" : "7310",
+            "longitude" : 146.3253589,
+            "latitude" : -41.1821862,
+            "country" : "Australia",
+            "country_code" : "AU",
+            "formatted_address" : "38 Lapthorne Cl, Don TAS 7310, Australia"
+          },
+          "message_id" : "e44b8060-821b-11e6-b5d1-0229bb62caa5"
+        }
+    http_version: 
+  recorded_at: Sat, 24 Sep 2016 05:58:19 GMT
 recorded_with: VCR 2.9.3

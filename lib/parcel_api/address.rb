@@ -4,7 +4,7 @@ module ParcelApi
   # Search International Addresses and Get Specifc International Address Detail.
 
   class Address
-    AUSTRALIAN_URL = '/ParcelAddress/2.0/australian/addresses'
+    AUSTRALIAN_URL = '/ParcelAddress/2.0/australia/addresses'
     DOMESTIC_URL = '/ParcelAddress/2.0/domestic/addresses'
     INTERNATIONAL_URL = '/ParcelAddress/2.0/international/addresses'
 
