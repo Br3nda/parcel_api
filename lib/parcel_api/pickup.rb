@@ -4,7 +4,7 @@ module ParcelApi
   # The integrator provides the pick up location in the form of a site id or an address to create the pick up record.
 
   class Pickup
-    PARCELPICKUP_URL = '/ParcelPickUp/2.0/bookings'
+    PARCELPICKUP_URL = '/ParcelPickUp/3.0/bookings'
 
     # Creates a new ParcelApi::Pickup instance.
 
@@ -17,8 +17,8 @@ module ParcelApi
     # @return Object of pickup details
 
     def create(pickup_options)
-      response = @connection.post PARCELPICKUP_URL, pickup_options
-      RecursiveOpenStruct.new(response.body, recurse_over_arrays: true)
+      response = @connection.post PARCELPICKUP_URL, body: pickup_options.to_json, headers: { 'Content-Type' => 'application/json' }
+      RecursiveOpenStruct.new(response.parsed, recurse_over_arrays: true)
     end
 
   end

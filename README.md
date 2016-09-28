@@ -50,8 +50,11 @@ client = ParcelApi::Client.new.tap do |config|
   config.username      = ENV['USERNAME']
   config.password      = ENV['PASSWORD']
   config.address       = 'https://api.uat.nzpost.co.nz/' # defaults to api.nzpost.co.nz
+  config.redis         = Redis.new(url: 'redis://:p4ssw0rd@10.0.1.1:6380/15') # defaults to Redis.new
 end
 ```
+
+Redis is currently required, Oauth2 `access_token`'s are cached in Redis and expired automatically. You can use an existing Redis connection.
 
 Client connections can be passed to each method:
 

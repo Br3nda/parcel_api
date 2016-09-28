@@ -19,8 +19,8 @@ module ParcelApi
     # @return [Array] return array of shipping options
 
     def get_domestic(parcel_params)
-      response = @connection.get DOMESTIC_URL, parcel_params
-      options = response.body.tap do |so|
+      response = @connection.get DOMESTIC_URL, params: parcel_params
+      options = response.parsed.tap do |so|
         so.delete('success')
         so.delete('message_id')
       end
@@ -32,8 +32,8 @@ module ParcelApi
     # @return [Array] return array of shipping options
 
     def get_international(parcel_params)
-      response = @connection.get INTERNATIONAL_URL, parcel_params
-      options = response.body.tap do |so|
+      response = @connection.get INTERNATIONAL_URL, params: parcel_params
+      options = response.parsed.tap do |so|
         so.delete('success')
         so.delete('message_id')
       end
