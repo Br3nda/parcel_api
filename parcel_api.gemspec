@@ -19,9 +19,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'thor', '~> 0.19'
-  spec.add_dependency 'faraday', '~> 0.9'
-  spec.add_dependency 'faraday_middleware', '~> 0.9'
   spec.add_dependency 'oauth2', '~> 1.0'
+  spec.add_dependency 'redis', '~> 3.2'
+  spec.add_dependency 'activesupport', '~> 4.2'
   spec.add_dependency 'recursive-open-struct', '~> 0.6'
 
   spec.add_development_dependency 'bundler', '~> 1.8'

@@ -21,9 +21,8 @@ module ParcelApi
 
     def search(query, count=10)
       return [] if query.length < 4
-
-      response = @connection.get DOMESTIC_URL, { q: query, count: count }
-      addresses = response.body['addresses'].each do |a|
+      response = @connection.get DOMESTIC_URL, params: { q: query, count: count }
+      addresses = response.parsed['addresses'].each do |a|
         a['address_id'] = Integer(a['address_id'])
         a['dpid'] = Integer(a['dpid']) if a['dpid']
       end
@@ -37,7 +36,7 @@ module ParcelApi
     def details(address_id)
       details_url = File.join(DOMESTIC_URL, address_id.to_s)
       response = @connection.get details_url
-      OpenStruct.new(response.body['address'])
+      OpenStruct.new(response.parsed['address'])
     end
 
     # Search for an Australian Address
@@ -56,7 +55,7 @@ module ParcelApi
     def australian_details(address_id)
       details_url = File.join(AUSTRALIAN_URL, address_id.to_s)
       response = @connection.get details_url
-      RecursiveOpenStruct.new(response.body['address'], recurse_over_arrays: true)
+      RecursiveOpenStruct.new(response.parsed['address'], recurse_over_arrays: true)
     end
 
     # Search for an International Address
@@ -68,8 +67,8 @@ module ParcelApi
     def international_search(query, count=5, country_code=nil)
       return [] if query.length < 4
 
-      response = @connection.get INTERNATIONAL_URL, { q: query, count: count, country_code: country_code }
-      response.body['addresses'].map {|address| OpenStruct.new(address)}
+      response = @connection.get INTERNATIONAL_URL, params: { q: query, count: count, country_code: country_code }
+      response.parsed['addresses'].map {|address| OpenStruct.new(address)}
     end
 
     # Return international address details for a specific international address id
@@ -79,7 +78,7 @@ module ParcelApi
     def international_details(address_id)
       details_url = File.join(INTERNATIONAL_URL, address_id.to_s)
       response = @connection.get details_url
-      RecursiveOpenStruct.new(response.body['result'], recurse_over_arrays: true)
+      RecursiveOpenStruct.new(response.parsed['result'], recurse_over_arrays: true)
     end
 
   end

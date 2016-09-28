@@ -46,7 +46,7 @@ intl_details.to_h.each {|k, v| puts "#{k}: #{v}"}
 # Tracking Example
 
 tracking = ParcelApi::Track.new
-results = tracking.details('1818120002213401AKL003HN')
+results = tracking.details('8144152543878001AKL002PN')
 
 # example tracking output
 last_event = results.tracking_events.last
@@ -196,8 +196,9 @@ intl_label_options = {
       indicia_number: '123456',
       insurance_required: true,
       contains_only_documents: true,
-      export_type: 'Gift',
-      harmonised_system_tariff: '12121212'
+      export_type: 'Documents',
+      harmonised_system_tariff: '12121212',
+      user_reference_code: SecureRandom.hex(1),
     }
   ]
 }
@@ -219,7 +220,7 @@ File.open("#{intl.label_id}.pdf", 'w') do |f|
 end
 
 
-ShippingOptions Example
+## ShippingOptions Example
 
 shipping_options = ParcelApi::ShippingOptions.new
 
@@ -251,8 +252,7 @@ intl_options.to_h.each {|k, v| puts "#{k}: #{v}"}
 
 pickup_params = {
   carrier: 'CourierPost',
-  message_id: 'Test Message ID',
-  message_date_time: '2015-05-27T14:19:50',
+  caller: 'Test Caller',
   account_number: '91327067',
   pickup_address: {
     site_code: '28979',

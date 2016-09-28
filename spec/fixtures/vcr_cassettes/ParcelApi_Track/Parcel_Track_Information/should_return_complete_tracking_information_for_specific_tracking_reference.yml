@@ -43,7 +43,7 @@ http_interactions:
   recorded_at: Thu, 11 Jun 2015 07:14:14 GMT
 - request:
     method: get
-    uri: https://api.nzpost.co.nz/ParcelTrack/2.0/parcels/2420059066827301HLZ001MN
+    uri: https://api.nzpost.co.nz/ParcelTrack/3.0/parcels/2420059066827301HLZ001MN
     body:
       encoding: US-ASCII
       string: ''

@@ -4,7 +4,7 @@ module ParcelApi
   # return tracking information for a specific tracking reference.
 
   class Track
-    PARCELTRACK_URL = '/ParcelTrack/2.0/parcels'
+    PARCELTRACK_URL = '/ParcelTrack/3.0/parcels'
 
     # Creates a new ParcelApi::Track instance.
 
@@ -19,8 +19,7 @@ module ParcelApi
     def details(tracking_reference)
       details_url = File.join(PARCELTRACK_URL, tracking_reference.to_s)
       response = @connection.get details_url
-      events = response.body.tap do |d|
-        d.delete('success')
+      events = response.parsed['results'].tap do |d|
         d['tracking_events'].map {|e| e['event_datetime'] = Time.parse(e['event_datetime'])}
         d['tracking_events'].sort_by! {|k| k['event_datetime'].to_i}
       end
