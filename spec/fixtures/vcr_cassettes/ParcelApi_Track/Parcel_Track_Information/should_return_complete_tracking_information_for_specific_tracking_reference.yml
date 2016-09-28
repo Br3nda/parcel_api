@@ -1,59 +1,18 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://oauth.nzpost.co.nz/as/token.oauth2
-    body:
-      encoding: UTF-8
-      string: client_id=123&client_secret=456&grant_type=password&password=password&username=test%40example.com
-    headers:
-      User-Agent:
-      - Faraday v0.9.1
-      Content-Type:
-      - application/x-www-form-urlencoded
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 11 Jun 2015 07:14:14 GMT
-      Cache-Control:
-      - no-cache, no-store
-      Pragma:
-      - no-cache
-      Max-Age:
-      - Thu, 01 Jan 1970 00:00:00 GMT
-      Content-Type:
-      - application/json;charset=UTF-8
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 GMT
-      Set-Cookie:
-      - PF=4hsASltbFqS1XhtcVLvWOw;Path=/;Secure;HttpOnly
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: UTF-8
-      string: "{\"access_token\":\"eyJhbGciOiJIUzI1NiIsImtpZCI6IlRFU1QifQ.eyJjbGllbnRpZCI6ImJlODEzNDE5NzE4NjQ5YWI5MmQyOGNiNmY5NmYzMDhlIiwidXNlcm5hbWUiOiJyb2JlcnRAZXRhaWxlci5jby5ueiIsImV4cCI6MTQzNDA5MzI1NCwic2NvcGUiOltdLCJjbGllbnRfaWQiOiJiZTgxMzQxOTcxODY0OWFiOTJkMjhjYjZmOTZmMzA4ZSJ9.KQM2kmICjz40Csv-EwPpFLam8tOieso6TucIU3Srvuo\",\"token_type\":\"Bearer\",\"expires_in\":86399}\r\n"
-    http_version:
-  recorded_at: Thu, 11 Jun 2015 07:14:14 GMT
-- request:
     method: get
-    uri: https://api.nzpost.co.nz/ParcelTrack/3.0/parcels/2420059066827301HLZ001MN
+    uri: https://api.nzpost.co.nz/ParcelTrack/3.0/parcels/8144152543878001AKL002PN
     body:
       encoding: US-ASCII
       string: ''
     headers:
-      Authorization:
-      - Bearer eyJhbGciOiJIUzI1NiIsImtpZCI6IlRFU1QifQ.eyJjbGllbnRpZCI6ImJlODEzNDE5NzE4NjQ5YWI5MmQyOGNiNmY5NmYzMDhlIiwidXNlcm5hbWUiOiJyb2JlcnRAZXRhaWxlci5jby5ueiIsImV4cCI6MTQzNDA5MzI1NCwic2NvcGUiOltdLCJjbGllbnRfaWQiOiJiZTgxMzQxOTcxODY0OWFiOTJkMjhjYjZmOTZmMzA4ZSJ9.KQM2kmICjz40Csv-EwPpFLam8tOieso6TucIU3Srvuo
       Client-Id:
       - 123
       User-Agent:
-      - Faraday v0.9.1
+      - Faraday v0.9.2
+      Authorization:
+      - Bearer eyJhbGciOiJIUzI1NiIsImtpZCI6IlRFU1QifQ.eyJjbGllbnRpZCI6ImEwNDlhYjlkN2E2OTRlOWFiMGI4ZjMwZGUwMmU4ZDA2IiwidXNlcmlkIjoicm9iZXJ0QGV0YWlsZXIuY28ubnoiLCJ1c2VybmFtZSI6InJvYmVydEBldGFpbGVyLmNvLm56IiwiZXhwIjoxNDc1MTI3MDQxLCJzY29wZSI6W10sImNsaWVudF9pZCI6ImEwNDlhYjlkN2E2OTRlOWFiMGI4ZjMwZGUwMmU4ZDA2IiwiYWNjZXNzX2d1aWQiOiJCeVdwczVWZ3JEemxGdHJiaUQwZUk5WVhTZkpmMEhXYiJ9.fIvtoQOaKgce1sMCxOxAaXWYXR93KEfKbPcZtk2Pawk
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -61,41 +20,36 @@ http_interactions:
   response:
     status:
       code: 200
-      message: OK
+      message: ''
     headers:
       Server:
       - nginx
       Date:
-      - Thu, 11 Jun 2015 07:14:17 GMT
+      - Wed, 28 Sep 2016 07:49:26 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '1140'
+      - '1650'
       Connection:
       - keep-alive
-      X-Mule-Encoding:
-      - utf-8
-      X-Mule-Session:
-      - rO0ABXNyACNvcmcubXVsZS5zZXNzaW9uLkRlZmF1bHRNdWxlU2Vzc2lvbi7rdtEW7GGKAwAFWgAFdmFsaWRMAA1mbG93Q29uc3RydWN0dAAmTG9yZy9tdWxlL2FwaS9jb25zdHJ1Y3QvRmxvd0NvbnN0cnVjdDtMAAJpZHQAEkxqYXZhL2xhbmcvU3RyaW5nO0wACnByb3BlcnRpZXN0AA9MamF2YS91dGlsL01hcDtMAA9zZWN1cml0eUNvbnRleHR0ACdMb3JnL211bGUvYXBpL3NlY3VyaXR5L1NlY3VyaXR5Q29udGV4dDt4cAFwdAAkNzc4OTg3NDQtMTAwOS0xMWU1LTg3OGItMDJlNmVkNzliMDc5c3IAJWphdmEudXRpbC5Db2xsZWN0aW9ucyRTeW5jaHJvbml6ZWRNYXAbc/kJS0s5ewMAAkwAAW1xAH4AA0wABW11dGV4dAASTGphdmEvbGFuZy9PYmplY3Q7eHBzcgAkb3JnLm11bGUudXRpbC5DYXNlSW5zZW5zaXRpdmVIYXNoTWFwndHZ72dFzgADAAB4cHcMP0AAAAAAABAAAAAAeHEAfgAJeHB4
       X-Ratelimit-Limit:
-      - '15000'
+      - '15'
       X-Ratelimit-Remaining:
-      - '14999'
+      - '14'
       X-Ratelimit-Reset:
-      - '0'
+      - '847'
     body:
       encoding: UTF-8
-      string: '{"success":true,"tracking_reference":"2420059066827301HLZ001MN","service":"OVERNIGHT","carrier":"Courier
-        Post","tracking_events":[{"status_code":"22","status_description":"Delivered","event_description":"Your
-        item was delivered by our courier based at Te Awamutu. Thank you for using
-        CourierPost","event_datetime":"2015-05-06T11:48:55","depot":"Te Awamutu"},{"status_code":"13","event_description":"Your
-        item was picked up by our courier based at Airport Oaks.","event_datetime":"2015-05-05T09:25:50"},{"status_code":"58","event_description":"We
-        were waiting on your courier coming back to our depot so that they could take
-        your item out for delivery.","event_datetime":"2015-05-06T06:49:07"},{"status_code":"32","event_description":"Your
-        item was processed for delivery.","event_datetime":"2015-05-06T10:44:35"},{"status_code":"22","event_description":"Your
-        item was delivered by our courier based at Te Awamutu. Thank you for using
-        CourierPost","event_datetime":"2015-05-06T11:48:55"},{"status_code":"8","event_description":"Your
-        item was processed at the CourierPost Auckland Operations Centre.","event_datetime":"2015-05-05T17:15:11"}]}'
+      string: '{"success":true,"results":{"tracking_reference":"8144152543878001AKL002PN","message_id":"976a0a41-d3cc-4a65-9d91-d121eba2d975","message_datetime":"2016-09-27T18:49:26.0000000Z","service":"","carrier":"","tracking_events":[{"tracking_reference":"8144152543878001AKL002PN","event_edifact_code":"997","source":"CME","seqref":"3049993165","status_description":"Ready
+        to send","event_description":"A tracking label has been created but your item
+        isn''t with us yet","event_datetime":"2016-09-19T11:28:36","signed_by":{"name":"","signature":""}},{"tracking_reference":"8144152543878001AKL002PN","event_edifact_code":"13","source":"CME","seqref":"3050314854","status_description":"Picked
+        up","event_description":"Your item was picked up by our courier Brian based
+        at Wellington-Ngaio Depot. Use <a href=''http://trackandtrace.courierpost.co.nz/notification/create/8144152543878001AKL002PN''>Notify
+        Me</a> to receive further updates on its progress","event_datetime":"2016-09-19T15:26:33","signed_by":{"name":"","signature":""}},{"tracking_reference":"8144152543878001AKL002PN","event_edifact_code":"8","source":"CME","seqref":"3050776656","status_description":"Processing
+        at depot","event_description":"Your item has been sorted at the CourierPost
+        Auckland Operations Centre","event_datetime":"2016-09-20T03:34:12","signed_by":{"name":"","signature":""}},{"tracking_reference":"8144152543878001AKL002PN","event_edifact_code":"32","source":"CME","seqref":"3050861949","status_description":"With
+        courier for delivery","event_description":"Your item is with a courier for
+        delivery","event_datetime":"2016-09-20T05:32:21","signed_by":{"name":"","signature":""}}]}}'
     http_version:
-  recorded_at: Thu, 11 Jun 2015 07:14:17 GMT
+  recorded_at: Wed, 28 Sep 2016 07:49:26 GMT
 recorded_with: VCR 2.9.3
