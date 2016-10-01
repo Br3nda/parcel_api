@@ -13,6 +13,7 @@ __Features__
 * ParcelPickUp
 * ParcelLabel
 * ParcelTrack
+* ParcelNotification
 
 ## Installation
 
