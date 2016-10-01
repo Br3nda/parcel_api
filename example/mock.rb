@@ -265,3 +265,17 @@ pickup_params = {
 pickup = ParcelApi::Pickup.new(client.connection) # use a custom connection
 pickup_results = pickup.create(pickup_params)
 pickup_results.to_h.each {|k, v| puts "#{k}: #{v}"}
+
+# Notification Example
+
+notification_params = {
+  tracking_reference: 'LE123454152NZ',
+  email: 'j.receiver@example.com',
+  receiver_first_name: 'John',
+  receiver_last_name: 'Receiver',
+  collection_location_id: '84320',
+}
+
+notification = ParcelApi::Notification.new
+notification_results = notification.create(notification_params)
+notification_results.to_h.each {|k, v| puts "#{k}: #{v}"}
