@@ -35,7 +35,7 @@ module ParcelApi
           access_token = OAuth2::AccessToken.from_hash client, JSON.parse(json)
         else
           access_token = client.password.get_token @username, @password
-          @redis.set(:parcel_api_access_token, access_token.to_hash.to_json, ex: access_token.expires_in.seconds - 1.minute)
+          @redis.set(:parcel_api_access_token, access_token.to_hash.to_json, ex: access_token.expires_in.seconds - 6.hours)
           access_token
         end
       end
